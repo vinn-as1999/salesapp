@@ -1,6 +1,18 @@
 const Home = () => {
   return (
-    <>aaaae</>
+    <>
+      <main>
+        <nav>
+          a
+        </nav>
+        <section className="graphs">
+          
+        </section>
+        <section className="pendencies">
+          a
+        </section>
+      </main>
+    </>
   )
 }
 
