@@ -1,5 +1,131 @@
+.nav-mobile, .aside-pc {
+  display: flex;
+}
+
+.home-main.pc {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+.home-main.pc aside {
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 100% !important;
+  width: 5%;
+  color: #d8dbdb;
+  background-color: #1F3A93;
+}
+.home-main.pc aside div {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: ease-in-out 0.1s;
+}
+.home-main.pc aside div:hover {
+  filter: drop-shadow(0 0 0.3rem #F4F4F4);
+}
+
+.home-main.mobile {
+  flex-direction: column;
+  height: 100%;
+}
+.home-main.mobile nav {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 6%;
+  padding: 5px;
+  color: #d8dbdb;
+  background-color: #1F3A93;
+}
+.home-main.mobile nav div {
+  font-size: 1.3rem;
+}
+.home-main.mobile .graphs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+  width: 100%;
+  height: 20%;
+  background-color: #1F3A93;
+  color: #d8dbdb;
+}
+.home-main.mobile .graphs .graph-data {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 5px;
+  height: 15%;
+  width: 95%;
+}
+.home-main.mobile .graphs .graph-data label {
+  width: clamp(130px, 20vw, 150px);
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.home-main.mobile .graphs .graph-data .graph {
+  width: 100% !important;
+  height: 100% !important;
+}
+.home-main.mobile .graphs .graph-data .money-value {
+  font-size: 15px;
+  width: 20%;
+}
+.home-main.mobile .pendencies {
+  height: 60%;
+}
+.home-main.mobile .pendencies li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10%;
+  list-style: none;
+  border-left: solid 1px #6aacd8;
+}
+.home-main.mobile footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home-main.mobile footer button {
+  color: #d8dbdb;
+  background-color: #1F3A93;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 3%;
+}
+
+#root {
+  height: 100vh;
+}
+
 body {
-  background-color: brown;
+  background-color: #F4F4F4;
+  font-family: "Raleway", sans-serif;
+  margin: auto;
+}
+
+h2 {
+  color: #2C3E50;
+  font-size: 2rem;
+  margin: 5% 0;
+  display: flex;
+  align-items: center;
+}
+h2::before {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #6aacd8;
+  filter: drop-shadow(0 0 1rem #6aacd8) drop-shadow(0 0 0.2rem #6aacd8);
+  margin-right: 0.5rem;
 }
 
 /*# sourceMappingURL=style.css.map */
