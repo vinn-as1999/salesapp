@@ -1,55 +1,16 @@
 @use '../variables.scss' as *;
+@use '../mixins.scss' as *;
 
-
-.nav-mobile, .aside-pc {
-  display: flex;
-}
 
 .home-main.pc {
   display: flex;
   flex-direction: row;
   height: 100%;
-
-  aside {
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    height: 100% !important;
-    width: 5%;
-    color: $text-secondary;
-    background-color: $color-primary;
-
-    div {
-      font-size: 1.5rem; 
-      cursor: pointer; 
-      transition: ease-in-out 0.1s;
-    }
-
-    div:hover {
-      filter: drop-shadow(0 0 0.3rem $color-secondary);
-    }
-  } 
 }
 
 
-
-
 .home-main.mobile {
-  flex-direction: column;
   height: 100%;
-
-  nav {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    height: 6%;
-    padding: 5px;
-    color: $text-secondary;
-    background-color: $color-primary;
-
-    div {font-size: 1.3rem;}
-  }
 
   .graphs {
     display: flex;
@@ -85,7 +46,8 @@
 
       .money-value {
         font-size: 15px;
-        width: 20%;
+        width: 35%;
+        text-align: center;
       }
     }
   }
@@ -93,27 +55,6 @@
   .pendencies {
     height: 60%;
 
-    li {
-      display: flex;
-      justify-content: space-between;
-      padding: 0 10%;
-      list-style: none;
-      border-left: solid 1px $chart-color-1;
-    }
-  }
-
-  footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    button {
-      color: $text-secondary;
-      background-color: $color-primary;
-      border: none;
-      outline: none;
-      border-radius: 15px;
-      padding: 3%;
-    }
+    li { @include list-style; }
   }
 }

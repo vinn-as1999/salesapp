@@ -1,0 +1,28 @@
+@use '../variables.scss' as *;
+@use '../mixins.scss' as *;
+
+.sales-main.pc {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+
+
+.sales-main.mobile {
+  display: flex;
+  flex-direction: column;
+
+  .sales-list ul {
+    min-height: 45vh;
+    max-height: 45vh;
+    
+    span { font-weight: 800; color: $text-tertiary}
+
+    li { @include list-style; }
+  }
+
+  .sales-list-form {
+    @include form-style;
+  }
+}

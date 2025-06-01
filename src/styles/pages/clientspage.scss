@@ -1,0 +1,27 @@
+@use '../variables.scss' as *;
+@use '../mixins.scss' as *;
+
+
+.clients-main.pc {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+
+
+.clients-main.mobile {
+  display: flex;
+  flex-direction: column;
+
+  .clients-list ul {
+    min-height: 45vh;
+    max-height: 45vh;
+
+    li { @include list-style; }
+  }
+
+  .clients-list-form {
+    @include form-style;
+  }
+}
