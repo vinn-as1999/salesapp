@@ -9,6 +9,7 @@
 @use './pages/home.scss';
 @use './pages/clientspage.scss';
 @use './pages/salespage.scss';
+@use './pages/productspage.scss';
 
 
 #root {
@@ -39,4 +40,10 @@ h2 {
     filter: drop-shadow(0 0 1rem $chart-color-1) drop-shadow(0 0 0.2rem $chart-color-1);
     margin-right: 0.5rem;
   }
+}
+
+h3 {
+  color: $chart-color-1;
+  font-size: 1.5rem;
+  margin: 5%;
 }
