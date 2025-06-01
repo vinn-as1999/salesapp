@@ -1,0 +1,17 @@
+@use '../variables.scss' as *;
+
+
+.billing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  button {
+    color: $text-secondary;
+    background-color: $color-primary;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    padding: 3%;
+  }
+}

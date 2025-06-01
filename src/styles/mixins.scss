@@ -1,0 +1,60 @@
+@use './variables.scss' as *;
+
+@mixin list-style {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10%;
+  list-style: none;
+  border-left: solid 1px $chart-color-1;
+}
+
+@mixin form-style {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    .info-field {
+      display: flex;
+      align-items: center;
+    }
+
+    .info-field label {
+      margin: 10px;
+      width: 100px;
+      color: $text-tertiary;
+      font-weight: bold;
+      text-align: end
+    }
+
+    .info-field input {
+      all: unset;
+      border-bottom: solid 1px $color-secondary;
+      
+      &:focus {
+        border-bottom: solid 1px $color-primary;
+      }
+    }
+    
+    .info-field.has-content input {
+      border-bottom: solid 1px $color-primary;
+    }
+
+    .save-field {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      label {
+        font-weight: bold;
+      }
+
+      .save {
+        all: unset;
+        cursor: pointer;
+        font-size: 13vw;
+        margin: 10%;
+        color: $color-success;
+      }
+    }
+  }

@@ -1,13 +1,33 @@
-.nav-mobile, .aside-pc {
+nav {
   display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 6%;
+  padding: 10px;
+  color: #d8dbdb;
+  background-color: #1F3A93;
+}
+nav div {
+  font-size: 1.3rem;
 }
 
-.home-main.pc {
+.billing {
   display: flex;
-  flex-direction: row;
-  height: 100%;
+  align-items: center;
+  justify-content: center;
 }
-.home-main.pc aside {
+.billing button {
+  color: #d8dbdb;
+  background-color: #1F3A93;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 3%;
+}
+
+aside {
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
@@ -16,31 +36,23 @@
   color: #d8dbdb;
   background-color: #1F3A93;
 }
-.home-main.pc aside div {
+aside div {
   font-size: 1.5rem;
   cursor: pointer;
   transition: ease-in-out 0.1s;
 }
-.home-main.pc aside div:hover {
+aside div:hover {
   filter: drop-shadow(0 0 0.3rem #F4F4F4);
 }
 
-.home-main.mobile {
-  flex-direction: column;
+.home-main.pc {
+  display: flex;
+  flex-direction: row;
   height: 100%;
 }
-.home-main.mobile nav {
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
-  height: 6%;
-  padding: 5px;
-  color: #d8dbdb;
-  background-color: #1F3A93;
-}
-.home-main.mobile nav div {
-  font-size: 1.3rem;
+
+.home-main.mobile {
+  height: 100%;
 }
 .home-main.mobile .graphs {
   display: flex;
@@ -74,7 +86,8 @@
 }
 .home-main.mobile .graphs .graph-data .money-value {
   font-size: 15px;
-  width: 20%;
+  width: 35%;
+  text-align: center;
 }
 .home-main.mobile .pendencies {
   height: 60%;
@@ -86,18 +99,137 @@
   list-style: none;
   border-left: solid 1px #6aacd8;
 }
-.home-main.mobile footer {
+
+.clients-main.pc {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.clients-main.mobile {
+  display: flex;
+  flex-direction: column;
+}
+.clients-main.mobile .clients-list ul {
+  min-height: 45vh;
+  max-height: 45vh;
+}
+.clients-main.mobile .clients-list ul li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10%;
+  list-style: none;
+  border-left: solid 1px #6aacd8;
+}
+.clients-main.mobile .clients-list-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.clients-main.mobile .clients-list-form .info-field {
+  display: flex;
+  align-items: center;
+}
+.clients-main.mobile .clients-list-form .info-field label {
+  margin: 10px;
+  width: 100px;
+  color: #9b9d9e;
+  font-weight: bold;
+  text-align: end;
+}
+.clients-main.mobile .clients-list-form .info-field input {
+  all: unset;
+  border-bottom: solid 1px #F4F4F4;
+}
+.clients-main.mobile .clients-list-form .info-field input:focus {
+  border-bottom: solid 1px #1F3A93;
+}
+.clients-main.mobile .clients-list-form .info-field.has-content input {
+  border-bottom: solid 1px #1F3A93;
+}
+.clients-main.mobile .clients-list-form .save-field {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.home-main.mobile footer button {
-  color: #d8dbdb;
-  background-color: #1F3A93;
-  border: none;
-  outline: none;
-  border-radius: 15px;
-  padding: 3%;
+.clients-main.mobile .clients-list-form .save-field label {
+  font-weight: bold;
+}
+.clients-main.mobile .clients-list-form .save-field .save {
+  all: unset;
+  cursor: pointer;
+  font-size: 13vw;
+  margin: 10%;
+  color: #2ECC71;
+}
+
+.sales-main.pc {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.sales-main.mobile {
+  display: flex;
+  flex-direction: column;
+}
+.sales-main.mobile .sales-list ul {
+  min-height: 45vh;
+  max-height: 45vh;
+}
+.sales-main.mobile .sales-list ul span {
+  font-weight: 800;
+  color: #9b9d9e;
+}
+.sales-main.mobile .sales-list ul li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10%;
+  list-style: none;
+  border-left: solid 1px #6aacd8;
+}
+.sales-main.mobile .sales-list-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.sales-main.mobile .sales-list-form .info-field {
+  display: flex;
+  align-items: center;
+}
+.sales-main.mobile .sales-list-form .info-field label {
+  margin: 10px;
+  width: 100px;
+  color: #9b9d9e;
+  font-weight: bold;
+  text-align: end;
+}
+.sales-main.mobile .sales-list-form .info-field input {
+  all: unset;
+  border-bottom: solid 1px #F4F4F4;
+}
+.sales-main.mobile .sales-list-form .info-field input:focus {
+  border-bottom: solid 1px #1F3A93;
+}
+.sales-main.mobile .sales-list-form .info-field.has-content input {
+  border-bottom: solid 1px #1F3A93;
+}
+.sales-main.mobile .sales-list-form .save-field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sales-main.mobile .sales-list-form .save-field label {
+  font-weight: bold;
+}
+.sales-main.mobile .sales-list-form .save-field .save {
+  all: unset;
+  cursor: pointer;
+  font-size: 13vw;
+  margin: 10%;
+  color: #2ECC71;
 }
 
 #root {
@@ -113,7 +245,7 @@ body {
 h2 {
   color: #2C3E50;
   font-size: 2rem;
-  margin: 5% 0;
+  margin: 5%;
   display: flex;
   align-items: center;
 }
