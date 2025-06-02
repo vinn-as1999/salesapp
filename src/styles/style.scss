@@ -6,6 +6,7 @@
 @use './components/aside.scss';
 
 // pages
+@use './pages/loginpage.scss';
 @use './pages/home.scss';
 @use './pages/clientspage.scss';
 @use './pages/salespage.scss';
@@ -17,7 +18,7 @@
 }
 
 body {
-  background-color: $color-secondary;
+  background-color: #ffff;
   font-family: 'Raleway', sans-serif;
   margin: auto;
 }

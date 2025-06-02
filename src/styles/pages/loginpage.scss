@@ -1,0 +1,128 @@
+@use '../variables.scss' as *;
+@use '../mixins.scss' as *;
+
+
+.login-main.pc {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+
+.login-main.mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient($color-primary, $color-tertiary);
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
+
+  .circle1 {
+    fill: $color-primary;
+    opacity: 0.5;
+    position: absolute;
+  }
+
+  .circle2 {
+    fill: $color-quaternary;
+    opacity: 0.5;
+  }
+
+  .circle3 {
+    fill: $color-tertiary;
+    opacity: 0.5;
+  }
+
+  .forms {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-secondary;
+    width: 80vw;
+    height: 80vh;
+    z-index: 1;
+    border-radius: 15px;
+    
+    h1 {
+      color: $text-primary;
+      font-size: 2.5rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
+      .login-field {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+        color: $text-primary;
+
+        label {
+          margin: 5px;
+          width: 85%;
+        }
+
+        input {
+          all: unset;
+          padding: 5px;
+          margin: 5px;
+          width: 80%;
+        }
+      }
+
+      .login-field.has-content input {
+        all: unset;
+        padding: 5px;
+        margin: 5px;
+        border-bottom: solid 1px $text-tertiary;
+        width: 85%;
+      }
+
+      button {
+        all: unset;
+        color: $text-secondary;
+        background-color: $color-primary;
+        text-align: center;
+        border: none;
+        outline: none;
+        border-radius: 15px;
+        width: 50%;
+        padding: 3%;
+        margin: 20px;
+      }
+
+      .forgot-password {
+        color: grey;
+        margin-top: 10px;
+      }
+
+      .register {
+        color: $text-tertiary;
+        font-size: 15px;
+        text-align: center;
+        width: 100%;
+
+        span {
+          color: $color-primary;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+} 

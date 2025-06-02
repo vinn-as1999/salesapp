@@ -45,6 +45,115 @@ aside div:hover {
   filter: drop-shadow(0 0 0.3rem #F4F4F4);
 }
 
+.login-main.pc {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.login-main.mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(#1F3A93, #8099e9);
+}
+.login-main.mobile svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+.login-main.mobile .circle1 {
+  fill: #1F3A93;
+  opacity: 0.5;
+  position: absolute;
+}
+.login-main.mobile .circle2 {
+  fill: #4866c7;
+  opacity: 0.5;
+}
+.login-main.mobile .circle3 {
+  fill: #8099e9;
+  opacity: 0.5;
+}
+.login-main.mobile .forms {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #F4F4F4;
+  width: 80vw;
+  height: 80vh;
+  z-index: 1;
+  border-radius: 15px;
+}
+.login-main.mobile .forms h1 {
+  color: #2C3E50;
+  font-size: 2.5rem;
+}
+.login-main.mobile .forms form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.login-main.mobile .forms form .login-field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  color: #2C3E50;
+}
+.login-main.mobile .forms form .login-field label {
+  margin: 5px;
+  width: 85%;
+}
+.login-main.mobile .forms form .login-field input {
+  all: unset;
+  padding: 5px;
+  margin: 5px;
+  width: 80%;
+}
+.login-main.mobile .forms form .login-field.has-content input {
+  all: unset;
+  padding: 5px;
+  margin: 5px;
+  border-bottom: solid 1px #9b9d9e;
+  width: 85%;
+}
+.login-main.mobile .forms form button {
+  all: unset;
+  color: #d8dbdb;
+  background-color: #1F3A93;
+  text-align: center;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  width: 50%;
+  padding: 3%;
+  margin: 20px;
+}
+.login-main.mobile .forms form .forgot-password {
+  color: grey;
+  margin-top: 10px;
+}
+.login-main.mobile .forms form .register {
+  color: #9b9d9e;
+  font-size: 15px;
+  text-align: center;
+  width: 100%;
+}
+.login-main.mobile .forms form .register span {
+  color: #1F3A93;
+  margin-left: 5px;
+}
+
 .home-main.pc {
   display: flex;
   flex-direction: row;
@@ -305,7 +414,7 @@ aside div:hover {
 }
 
 body {
-  background-color: #F4F4F4;
+  background-color: white;
   font-family: "Raleway", sans-serif;
   margin: auto;
 }
