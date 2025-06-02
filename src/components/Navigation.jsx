@@ -15,16 +15,16 @@ function Navigation(props) {
         props.isMobile ? (
           <nav className="nav-mobile">
             <div>
-              <RiHome9Line onClick={() => navigate("/")} />
+              <RiHome9Line onClick={() => navigate("/home")} />
             </div>
             <div>
-              <MdAttachMoney onClick={() => navigate("/sales")} />
+              <MdAttachMoney onClick={() => navigate("/home/sales")} />
             </div>
             <div>
-              <LuUserRound onClick={() => navigate("/clients")} />
+              <LuUserRound onClick={() => navigate("/home/clients")} />
             </div>
             <div>
-              <BsBox onClick={() => navigate("/products")} />
+              <BsBox onClick={() => navigate("/home/products")} />
             </div>
             <div>
               <GrLogout />

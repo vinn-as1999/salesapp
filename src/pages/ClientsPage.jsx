@@ -8,6 +8,7 @@ function ClientsPage(props) {
   const [contact, setContact] = useState('')
   const [location, setLocation] = useState('')
   const [notes, setNotes] = useState('')
+  const fieldClassName = name ? 'info-field has-content' : 'info-field';
 
   return (
     <>
@@ -18,24 +19,40 @@ function ClientsPage(props) {
 
         <section className="clients-list">
           <form className="clients-list-form">
-            <div className={`info-field ${name ? 'has-content' : ''}`}>
+            <div className={fieldClassName}>
               <label>Nome</label>
-              <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+              <input autoFocus={true} 
+                type="text" 
+                value={name} 
+                onChange={(e) => setName(e.target.value)}
+                placeholder='ex: João' />
             </div>
 
-            <div className={`info-field ${contact ? 'has-content' : ''}`}>
+            <div className={contact ? 'info-field has-content' : 'info-field'}>
               <label>Contato</label>
-              <input type="number" value={contact} onChange={(e) => setContact(e.target.value)} />
+              <input 
+                type="number" 
+                value={contact} 
+                onChange={(e) => setContact(e.target.value)}
+                placeholder='ex: 1123456789' />
             </div>
 
-            <div className={`info-field ${location ? 'has-content' : ''}`}>
+            <div className={location ? 'info-field has-content' : 'info-field'}>
               <label>Local</label>
-              <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
+              <input 
+                type="text" 
+                value={location} 
+                onChange={(e) => setLocation(e.target.value)}
+                placeholder='ex: Eaton' />
             </div>
             
-            <div className={`info-field ${notes ? 'has-content' : ''}`}>
-              <label>Observações</label>
-              <input type="text" value={notes} onChange={(e) => setNotes(e.target.value)} />
+            <div className={notes ? 'info-field has-content' : 'info-field'}>
+              <label>Observa es</label>
+              <input 
+                type="text" 
+                value={notes} 
+                onChange={(e) => setNotes(e.target.value)}
+                placeholder='ex: Nenhuma' />
             </div>
 
             <div className='save-field'>

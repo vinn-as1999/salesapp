@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import { ClientsProvider } from "./contexts/ClientsContext";
 import { ProductsProvider } from "./contexts/ProductsContext";
+import LoginPage from "./pages/LoginPage";
 import SalesPage from "./pages/SalesPage";
 import ProductsPage from "./pages/ProductsPage";
 import ClientsPage from "./pages/ClientsPage";
@@ -28,10 +29,11 @@ const App = () => {
         <ProductsProvider>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Home isMobile={isMobile} />} />
-              <Route path="/clients" element={<ClientsPage isMobile={isMobile} />} />
-              <Route path="/sales" element={<SalesPage isMobile={isMobile} />} />
-              <Route path="/products" element={<ProductsPage isMobile={isMobile} />} />
+              <Route path = "/login" element={<LoginPage isMobile={isMobile} />} />
+              <Route path="/home" element={<Home isMobile={isMobile} />} />
+              <Route path="/home/clients" element={<ClientsPage isMobile={isMobile} />} />
+              <Route path="/home/sales" element={<SalesPage isMobile={isMobile} />} />
+              <Route path="/home/products" element={<ProductsPage isMobile={isMobile} />} />
             </Routes>
           </BrowserRouter>
         </ProductsProvider>

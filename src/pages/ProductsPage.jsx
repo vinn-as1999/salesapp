@@ -1,14 +1,14 @@
-import React from 'react'
+import {useState} from 'react'
 import Navigation from '../components/Navigation'
-import { SiPanasonic } from 'react-icons/si'
 import { IoCheckmarkCircle } from 'react-icons/io5'
 
 function ProductsPage(props) {
-  const [name, setName] = React.useState('')
-  const [price, setPrice] = React.useState(0)
-  const [quantity, setQuantity] = React.useState(0)
-  const [category, setCategory] = React.useState('')
-  const [description, setDescription] = React.useState('')
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState();
+  const [quantity, setQuantity] = useState();
+  const [category, setCategory] = useState('');
+  const [description, setDescription] = useState('');
+  const fieldClassName = name ? 'info-field has-content' : 'info-field';
 
   return (
     <>
@@ -19,23 +19,44 @@ function ProductsPage(props) {
 
         <section className="products-list">
           <form className='products-list-form'>
-            <div className={`info-field ${name ? 'has-content' : ''}`}>
-              <label htmlFor="">Produto</label>
-              <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+            <div className={fieldClassName}>
+              <label>Categoria</label>
+              <input autoFocus={true} 
+                type="text" 
+                value={name} 
+                onChange={(e) => setName(e.target.value)}
+                placeholder='ex: Doces' />
             </div>
 
-            <div className={`info-field ${price ? 'has-content' : ''}`}>
-              <label htmlFor="">Valor</label>
-              <input type="number" value={price} onChange={(e) => setPrice(Number(e.target.value))} />
+            <div className={fieldClassName}>
+              <label>Produto</label>
+              <input 
+                type="text" 
+                value={name} 
+                onChange={(e) => setName(e.target.value)}
+                placeholder='ex: Paçoca' />
             </div>
 
-            <div className={`info-field ${quantity ? 'has-content' : ''}`}>
-              <label htmlFor="">Quantidade</label>
-              <input type="number" value={quantity} onChange={(e) => setQuantity(Number(e.target.value))} />
+            <div className={fieldClassName}>
+              <label>Valor</label>
+              <input 
+                type="number" 
+                value={price} 
+                onChange={(e) => setPrice(Number(e.target.value))} 
+                placeholder='ex: 1.00' />
+            </div>
+
+            <div className={fieldClassName}>
+              <label>Quantidade</label>
+              <input 
+                type="number" 
+                value={quantity} 
+                onChange={(e) => setQuantity(Number(e.target.value))}
+                placeholder='ex: 10' />
             </div>
 
             <div className="save-field">
-              <label htmlFor="">Registrar</label>
+              <label>Registrar</label>
               <button className='save'>
                 <IoCheckmarkCircle />
               </button>
