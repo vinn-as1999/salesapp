@@ -20,7 +20,7 @@ nav div {
 }
 .billing button {
   color: #d8dbdb;
-  background-color: #1F3A93;
+  background-color: #E74C3C;
   border: none;
   outline: none;
   border-radius: 15px;
@@ -202,7 +202,7 @@ aside div:hover {
 .home-main.mobile .pending {
   display: flex;
   align-items: center;
-  height: 60%;
+  height: 65%;
 }
 .home-main.mobile .pending li {
   display: flex;
@@ -355,7 +355,7 @@ aside div:hover {
   flex-direction: column;
 }
 .products-main.mobile .products-list ul {
-  min-height: 20vh;
+  min-height: 25vh;
   max-height: 45vh;
 }
 .products-main.mobile .products-list ul span {
