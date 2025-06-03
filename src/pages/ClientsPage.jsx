@@ -1,9 +1,13 @@
-import {useState} from 'react'
+import { useState, useContext } from 'react'
 import Navigation from '../components/Navigation'
 import BillingButton from '../components/BillingButton'
 import { IoCheckmarkCircle } from "react-icons/io5"
+import { ClientsContext } from '../contexts/ClientsContext'
+import Empty from '../components/Empty'
 
 function ClientsPage(props) {
+  const { clients, setClients } = useContext(ClientsContext);
+
   const [name, setName] = useState('')
   const [contact, setContact] = useState('')
   const [location, setLocation] = useState('')
@@ -47,7 +51,7 @@ function ClientsPage(props) {
             </div>
             
             <div className={notes ? 'info-field has-content' : 'info-field'}>
-              <label>Observa es</label>
+              <label>Observações</label>
               <input 
                 type="text" 
                 value={notes} 
@@ -64,12 +68,19 @@ function ClientsPage(props) {
           </form>
 
           <ul>
-            <li>
-              <div>João</div>
-              <div>12345678</div>
-              <div>Local</div>
-              <div>Observações</div>
-            </li>
+            {
+              // conditional rendering
+              clients.length > 0
+                ? clients.map((client, index) => (
+                <>
+                  <li key={index}>{client.name}</li>
+                  <li>{client.contact}</li>
+                  <li>{client.location}</li>
+                  <li>{client.notes}</li>
+                </>
+              ))
+                : <Empty /> 
+            }
           </ul>
         </section>
 
