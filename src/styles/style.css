@@ -10,6 +10,7 @@ nav {
 }
 nav div {
   font-size: 1.3rem;
+  padding: 0 10px;
 }
 
 .billing {
@@ -87,7 +88,7 @@ aside div:hover {
   justify-content: center;
   background-color: #F4F4F4;
   width: 80vw;
-  height: 80vh;
+  height: 500px;
   z-index: 1;
   border-radius: 15px;
 }

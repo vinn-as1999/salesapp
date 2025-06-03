@@ -14,17 +14,17 @@ function Navigation(props) {
       {
         props.isMobile ? (
           <nav className="nav-mobile">
-            <div>
-              <RiHome9Line onClick={() => navigate("/home")} />
+            <div onClick={() => navigate("/home")}>
+              <RiHome9Line />
             </div>
-            <div>
-              <MdAttachMoney onClick={() => navigate("/home/sales")} />
+            <div onClick={() => navigate("/home/sales")}>
+              <MdAttachMoney />
             </div>
-            <div>
-              <LuUserRound onClick={() => navigate("/home/clients")} />
+            <div onClick={() => navigate("/home/clients")}>
+              <LuUserRound />
             </div>
-            <div>
-              <BsBox onClick={() => navigate("/home/products")} />
+            <div onClick={() => navigate("/home/products")}>
+              <BsBox />
             </div>
             <div>
               <GrLogout />
