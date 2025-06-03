@@ -9,6 +9,9 @@
 }
 
 
+
+
+
 .home-main.mobile {
   height: 100%;
 
@@ -52,7 +55,9 @@
     }
   }
 
-  .pendencies {
+  .pending {
+    display: flex;
+    align-items: center;
     height: 60%;
 
     li { @include list-style; }

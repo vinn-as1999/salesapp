@@ -1,6 +1,7 @@
-import {useState} from 'react'
-import Navigation from '../components/Navigation'
+import { useState } from 'react'
 import { IoCheckmarkCircle } from 'react-icons/io5'
+import Navigation from '../components/Navigation'
+import BillingButton from '../components/BillingButton'
 
 function ProductsPage(props) {
   const [name, setName] = useState('');
@@ -72,6 +73,8 @@ function ProductsPage(props) {
             </li>
           </ul>
         </section>
+
+        <BillingButton />
       </main>
     </>
   )

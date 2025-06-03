@@ -199,10 +199,12 @@ aside div:hover {
   width: 35%;
   text-align: center;
 }
-.home-main.mobile .pendencies {
+.home-main.mobile .pending {
+  display: flex;
+  align-items: center;
   height: 60%;
 }
-.home-main.mobile .pendencies li {
+.home-main.mobile .pending li {
   display: flex;
   justify-content: space-between;
   padding: 0 10%;
@@ -353,7 +355,7 @@ aside div:hover {
   flex-direction: column;
 }
 .products-main.mobile .products-list ul {
-  min-height: 45vh;
+  min-height: 20vh;
   max-height: 45vh;
 }
 .products-main.mobile .products-list ul span {

@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
-import Navigation from "../components/Navigation";
-import BillingButton from "../components/BillingButton";
+import { useEffect, useState, useContext } from "react"
+import Navigation from "../components/Navigation"
+import BillingButton from "../components/BillingButton"
+import { ClientsContext } from "../contexts/ClientsContext"
+import Empty from "../components/Empty"
 
 
 const Home = (props) => {
+  const { clients, setClients, pending } = useContext(ClientsContext);
 
   return (
     <>
@@ -11,6 +14,9 @@ const Home = (props) => {
         <Navigation isMobile={props.isMobile} />
 
         <section className="graphs">
+
+
+          
           <div className="graph-data">
             <label>
               João
@@ -31,14 +37,22 @@ const Home = (props) => {
         </section>
 
         {
-          <section className="pendencies">
+          <section className="pending">
             <ul>
-              <h2 style={{marginLeft: 0}}>João</h2>
-              <li>
-                <span>Paçoca</span>
-                <span>R$ 3,00</span>
-                <span>30/05</span>
-              </li>
+              {
+                pending.length > 0
+                  ? pending.map((pending, index) => (
+                    <div key={index}>
+                      <h2 style={{marginLeft: 0}}>{pending.client}</h2>
+                      <li>
+                        <span>{pending.product}</span>
+                        <span>{pending.price}</span>
+                        <span>{pending.date}</span>
+                      </li>
+                    </div>
+                  ))
+                  : <Empty />
+              }
             </ul>
           </section>
         }
