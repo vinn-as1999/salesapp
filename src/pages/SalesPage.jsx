@@ -19,12 +19,12 @@ function SalesPage(props) {
         <section className="sales-list-form">
           <div className="info-field">
             <label htmlFor="">Cliente</label>
-            <input type="text" />
+            <input type="text" placeholder='ex: João' />
           </div>
 
           <div className="info-field">
             <label htmlFor="">Produto</label>
-            <input type="text" />
+            <input type="text" placeholder='ex: Paçoca' />
           </div>
 
           <div className="save-field">
@@ -47,10 +47,10 @@ function SalesPage(props) {
               sales.length > 0 
                 ? sales.map((sale) => (
                   <li key={sale.id}>
-                    <span>{sale.client}</span>
-                    <span>{sale.product}</span>
-                    <span>{sale.value}</span>
-                    <span>{sale.date}</span>
+                    <div>{sale.client}</div>
+                    <div>{sale.product}</div>
+                    <div>{sale.value}</div>
+                    <div>{sale.date}</div>
                   </li>
               )) 
                 : <Empty />

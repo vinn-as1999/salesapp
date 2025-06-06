@@ -16,8 +16,14 @@
   .sales-list ul {
     min-height: 45vh;
     max-height: 45vh;
-    
-    span { font-weight: 800; color: $text-tertiary}
+
+    span { 
+      font-weight: 800;
+      font-size: 1rem;
+      width: 100%;
+      text-align: center; 
+      color: $text-tertiary;
+    }
 
     li { @include list-style; }
   }

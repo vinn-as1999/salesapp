@@ -3,9 +3,21 @@
 @mixin list-style {
   display: flex;
   justify-content: space-between;
-  padding: 0 10%;
+  padding: 0 5%;
   list-style: none;
   border-left: solid 1px $chart-color-1;
+
+  div {
+    padding: 3%;
+    background-color: rgb(230, 232, 233);
+    font-size: 1rem;
+    margin: 3% 0;
+    width: 100%;
+    text-align: center;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 @mixin form-style {

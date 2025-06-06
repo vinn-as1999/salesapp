@@ -207,9 +207,20 @@ aside div:hover {
 .home-main.mobile .pending li {
   display: flex;
   justify-content: space-between;
-  padding: 0 10%;
+  padding: 0 5%;
   list-style: none;
   border-left: solid 1px #6aacd8;
+}
+.home-main.mobile .pending li div {
+  padding: 3%;
+  background-color: rgb(230, 232, 233);
+  font-size: 1rem;
+  margin: 3% 0;
+  width: 100%;
+  text-align: center;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .clients-main.pc {
@@ -229,9 +240,20 @@ aside div:hover {
 .clients-main.mobile .clients-list ul li {
   display: flex;
   justify-content: space-between;
-  padding: 0 10%;
+  padding: 0 5%;
   list-style: none;
   border-left: solid 1px #6aacd8;
+}
+.clients-main.mobile .clients-list ul li div {
+  padding: 3%;
+  background-color: rgb(230, 232, 233);
+  font-size: 1rem;
+  margin: 3% 0;
+  width: 100%;
+  text-align: center;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .clients-main.mobile .clients-list-form {
   display: flex;
@@ -292,14 +314,28 @@ aside div:hover {
 }
 .sales-main.mobile .sales-list ul span {
   font-weight: 800;
+  font-size: 1rem;
+  width: 100%;
+  text-align: center;
   color: #9b9d9e;
 }
 .sales-main.mobile .sales-list ul li {
   display: flex;
   justify-content: space-between;
-  padding: 0 10%;
+  padding: 0 5%;
   list-style: none;
   border-left: solid 1px #6aacd8;
+}
+.sales-main.mobile .sales-list ul li div {
+  padding: 3%;
+  background-color: rgb(230, 232, 233);
+  font-size: 1rem;
+  margin: 3% 0;
+  width: 100%;
+  text-align: center;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .sales-main.mobile .sales-list-form {
   display: flex;
@@ -365,9 +401,20 @@ aside div:hover {
 .products-main.mobile .products-list ul li {
   display: flex;
   justify-content: space-between;
-  padding: 0 10%;
+  padding: 0 5%;
   list-style: none;
   border-left: solid 1px #6aacd8;
+}
+.products-main.mobile .products-list ul li div {
+  padding: 3%;
+  background-color: rgb(230, 232, 233);
+  font-size: 1rem;
+  margin: 3% 0;
+  width: 100%;
+  text-align: center;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .products-main.mobile .products-list-form {
   display: flex;

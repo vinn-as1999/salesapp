@@ -4,7 +4,7 @@ const ClientsContext = createContext();
 
 const ClientsProvider = ({children}) => {
   const [clients, setClients] = useState([]);
-  const [sales, setSales] = useState([]);
+  const [sales, setSales] = useState([{client: 'joão marcos dos santos', product: 'paçoca', value: 10, date: '01/01'}]);
   const [pending, setPending] = useState([]);
   const [pendingValues, setPendingValues] = useState([]);
 
