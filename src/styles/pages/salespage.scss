@@ -16,6 +16,7 @@
   .sales-list ul {
     min-height: 45vh;
     max-height: 45vh;
+    overflow-y: auto;
 
     span { 
       font-weight: 800;
@@ -31,4 +32,48 @@
   .sales-list-form {
     @include form-style;
   }
+
+  .hidden {
+    display: none;
+  }
+
+  .edit {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    text-align: center;
+    z-index: 10; 
+    animation: appears 0.5s ease-in-out;
+
+    svg {
+      background-color: transparent !important;
+      cursor: pointer;
+      transition: ease-in-out 0.1s;
+      margin: 5px 0;
+    }
+
+    .edit-bttn {
+      color: $text-primary;
+    }
+
+    .delete-bttn {
+      color: $color-danger;
+    }
+
+    .close-bttn {
+      color: $color-danger;
+    }
+  }
+}
+
+
+
+
+
+@keyframes appears {
+  from { right: 50%; }
+  to { right: 10%; }
 }
