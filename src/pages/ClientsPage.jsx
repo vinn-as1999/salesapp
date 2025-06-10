@@ -68,18 +68,29 @@ function ClientsPage(props) {
           </form>
 
           <ul>
+            <li>
+              <span>Nome</span>
+              <span>Contato</span>
+              <span>Local</span>
+              <span>Observação</span>
+            </li>
             {
-              // conditional rendering
               clients.length > 0
-                ? clients.map((client, index) => (
-                <>
-                  <li key={index}>{client.name}</li>
-                  <li>{client.contact}</li>
-                  <li>{client.location}</li>
-                  <li>{client.notes}</li>
-                </>
-              ))
-                : <Empty /> 
+                ? clients.map(client => (
+                    <li
+                      key={client.id}
+                      onClick={(e) => {
+                        //
+                      }}
+                      style={{ position: 'relative' }}
+                    >
+                      <div>{client.name}</div>
+                      <div>{client.contact}</div>
+                      <div>{client.location}</div>
+                      <div>{client.notes}</div>
+                    </li>
+                  ))
+                : <Empty />
             }
           </ul>
         </section>

@@ -3,7 +3,45 @@ import { createContext, useState } from "react";
 const ClientsContext = createContext();
 
 const ClientsProvider = ({children}) => {
-  const [clients, setClients] = useState([]);
+const [clients, setClients] = useState([
+    {
+      name: 'João Marcos',
+      contact: '(11) 91234-5678',
+      location: 'São Paulo - SP',
+      notes: 'Cliente antigo, prefere contato por WhatsApp.'
+    },
+    {
+      name: 'Maria Aparecida',
+      contact: '(21) 99876-5432',
+      location: 'Rio de Janeiro - RJ',
+      notes: 'Comprou recentemente, interessada em promoções.'
+    },
+    {
+      name: 'Carlos Eduardo',
+      contact: '(31) 98765-4321',
+      location: 'Belo Horizonte - MG',
+      notes: 'Solicitou orçamento para grande volume.'
+    },
+    {
+      name: 'Fernanda Souza',
+      contact: '(41) 97654-3210',
+      location: 'Curitiba - PR',
+      notes: 'Cliente nova, enviou feedback positivo.'
+    },
+    {
+      name: 'Rafael Oliveira',
+      contact: '(51) 96543-2109',
+      location: 'Porto Alegre - RS',
+      notes: 'Sempre compra no começo do mês.'
+    },
+    {
+      name: 'Amanda Ribeiro',
+      contact: '(71) 95432-1098',
+      location: 'Salvador - BA',
+      notes: 'Gosta de produtos artesanais.'
+    },
+  ]);
+
   const [sales, setSales] = useState([
     { saleId: 1, client: 'João Marcos dos Santos', product: 'Paçoca', value: 10, date: '01/01' },
     { saleId: 2, client: 'Maria Aparecida Lima', product: 'Coxinha', value: 8, date: '03/01' },
