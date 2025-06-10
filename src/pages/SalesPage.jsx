@@ -1,17 +1,14 @@
 import { useContext, useEffect, useState } from 'react'
 import { ClientsContext } from '../contexts/ClientsContext'
 import { IoCheckmarkCircle } from 'react-icons/io5'
-import { IoMdCloseCircle } from "react-icons/io"
-import { FaTrash } from "react-icons/fa6"
-import { MdModeEdit } from "react-icons/md"
 import Navigation from '../components/Navigation'
 import Empty from '../components/Empty'
 import BillingButton from '../components/BillingButton'
+import EditionMenu from '../components/EditionMenu'
 
 
 function SalesPage(props) {
   const { sales } = useContext(ClientsContext);
-  const [editSale, setEditSale] = useState(null);
 
 
   return (
@@ -55,22 +52,22 @@ function SalesPage(props) {
                     key={sale.saleId} 
                     onClick={(e) => {
                       e.stopPropagation(); 
-                      setEditSale(sale.saleId)
+                      props.setEditSale(sale.saleId)
                     }} 
-                    style={{position: 'relative'}}>
+                    style={{position: 'relative'}}
+                  >
+
                     <div>{sale.client}</div>
                     <div>{sale.product}</div>
                     <div>{sale.value}</div>
                     <div>{sale.date}</div>
 
-                    <span className={editSale === sale.saleId ? 'edit' : 'hidden'}>
-                      <MdModeEdit className='edit-bttn' size={30} />
-                      <FaTrash className='delete-bttn' size={30} />
-                      <IoMdCloseCircle className='close-bttn' size={30} onClick={(e) => {
-                        e.stopPropagation();
-                        setEditSale(null);
-                      }} />
-                    </span>
+                    <EditionMenu 
+                      id={sale.saleId} 
+                      editVariable={props.editSale} 
+                      setEditFunction={props.setEditSale} 
+                      functionParams={'sale'}
+                    />
                   </li>
               )) 
                 : <Empty />

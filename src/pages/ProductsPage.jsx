@@ -1,7 +1,10 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { IoCheckmarkCircle } from 'react-icons/io5'
+import { ProductsContext } from '../contexts/ProductsContext'
 import Navigation from '../components/Navigation'
 import BillingButton from '../components/BillingButton'
+import Empty from '../components/Empty'
+import EditionMenu from '../components/EditionMenu'
 
 function ProductsPage(props) {
   const [name, setName] = useState('');
@@ -9,7 +12,9 @@ function ProductsPage(props) {
   const [quantity, setQuantity] = useState();
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
+  const { products, setProducts } = useContext(ProductsContext);
   const fieldClassName = name ? 'info-field has-content' : 'info-field';
+
 
   return (
     <>
@@ -69,8 +74,34 @@ function ProductsPage(props) {
             <li>
               <span>Produto</span>
               <span>Valor</span>
-              <span>Qtd.</span>
+              <span>Quantidade</span>
             </li>
+            {
+              products.length > 0
+                ? products.map(product => (
+                    <li 
+                      key={product.id}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        props.setEditProduct(product.id);
+                      }}
+                      style={{position: 'relative'}}
+                    >
+
+                      <div>{product.name}</div>
+                      <div>{product.price}</div>
+                      <div>{product.quantity}</div>
+
+                      <EditionMenu 
+                        id={product.id} 
+                        editVariable={props.editProduct} 
+                        setEditFunction={props.setEditProduct} 
+                        functionParams={'product'}
+                      />
+                    </li>
+                  ))
+                : <Empty />
+            }
           </ul>
         </section>
 

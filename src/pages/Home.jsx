@@ -14,13 +14,11 @@ const Home = (props) => {
         <Navigation isMobile={props.isMobile} />
 
         <section className="graphs">
-
-
-          
           <div className="graph-data">
             <label>
               João
             </label>
+
             <svg width="100" height="100" className="graph">
               <defs>
                 <linearGradient id="barGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -28,8 +26,9 @@ const Home = (props) => {
                   <stop offset="100%" stopColor="#fff" stopOpacity="1" />
                 </linearGradient>
               </defs>
-              <rect className="bar" x="10" y="5" width="150" height="10" fill="url(#barGradient)"></rect>
+              <rect className="bar" x="10" y="5" width="150" height="10" fill="url(#barGradient)" />
             </svg>
+
             <div className="money-value">
               R$ 300,00
             </div>
@@ -42,15 +41,15 @@ const Home = (props) => {
               {
                 pending.length > 0
                   ? pending.map((pending, index) => (
-                    <div key={index}>
-                      <h2 style={{marginLeft: 0}}>{pending.client}</h2>
-                      <li>
-                        <span>{pending.product}</span>
-                        <span>{pending.price}</span>
-                        <span>{pending.date}</span>
-                      </li>
-                    </div>
-                  ))
+                      <div key={index}>
+                        <h2 style={{marginLeft: 0}}>{pending.client}</h2>
+                        <li>
+                          <span>{pending.product}</span>
+                          <span>{pending.price}</span>
+                          <span>{pending.date}</span>
+                        </li>
+                      </div>
+                    ))
                   : <Empty />
               }
             </ul>

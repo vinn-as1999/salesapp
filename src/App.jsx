@@ -10,6 +10,8 @@ import ClientsPage from "./pages/ClientsPage";
 
 const App = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const [editSale, setEditSale] = useState(null);
+    const [editProduct, setEditProduct] = useState(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -31,9 +33,9 @@ const App = () => {
             <Routes>
               <Route path = "/login" element={<LoginPage isMobile={isMobile} />} />
               <Route path="/home" element={<Home isMobile={isMobile} />} />
-              <Route path="/home/clients" element={<ClientsPage isMobile={isMobile} />} />
-              <Route path="/home/sales" element={<SalesPage isMobile={isMobile} />} />
-              <Route path="/home/products" element={<ProductsPage isMobile={isMobile} />} />
+              <Route path="/home/clients" element={<ClientsPage isMobile={isMobile} editSale={editSale} setEditSale={setEditSale} />} />
+              <Route path="/home/sales" element={<SalesPage isMobile={isMobile} editSale={editSale} setEditSale={setEditSale} />} />
+              <Route path="/home/products" element={<ProductsPage isMobile={isMobile} editProduct={editProduct} setEditProduct={setEditProduct} />} />
             </Routes>
           </BrowserRouter>
         </ProductsProvider>

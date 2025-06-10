@@ -15,8 +15,14 @@
   .products-list ul {
     min-height: 25vh;
     max-height: 45vh;
+    overflow-y: auto;
     
-    span { font-weight: 800; color: $text-tertiary}
+    span { 
+      font-weight: 800; 
+      color: $text-tertiary; 
+      width: 100%; 
+      text-align: center;
+    }
 
     li { @include list-style; }    
   }
