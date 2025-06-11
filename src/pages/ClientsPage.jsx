@@ -4,6 +4,8 @@ import BillingButton from '../components/BillingButton'
 import { IoCheckmarkCircle } from "react-icons/io5"
 import { ClientsContext } from '../contexts/ClientsContext'
 import Empty from '../components/Empty'
+import EditionMenu from '../components/EditionMenu'
+
 
 function ClientsPage(props) {
   const { clients, setClients } = useContext(ClientsContext);
@@ -13,6 +15,16 @@ function ClientsPage(props) {
   const [location, setLocation] = useState('')
   const [notes, setNotes] = useState('')
   const fieldClassName = name ? 'info-field has-content' : 'info-field';
+
+
+  async function handleEditClient(id) {
+    console.log('editou cliente');
+  }
+
+  async function handleDeleteClient(id) {
+    console.log('deletou cliente');
+  }
+
 
   return (
     <>
@@ -80,18 +92,43 @@ function ClientsPage(props) {
                     <li
                       key={client.id}
                       onClick={(e) => {
-                        //
+                        e.stopPropagation();
+                        props.setEditClient(client.id);
                       }}
                       style={{ position: 'relative' }}
                     >
-                      <div>{client.name}</div>
-                      <div>{client.contact}</div>
-                      <div>{client.location}</div>
-                      <div>{client.notes}</div>
-                    </li>
-                  ))
-                : <Empty />
-            }
+          {
+            props.clientsTrigger === client.id ? (
+              // Modo edição (inputs)
+              <>
+                <div><input type="text" defaultValue={client.name} /></div>
+                <div><input type="text" defaultValue={client.contact} /></div>
+                <div><input type="text" defaultValue={client.location} /></div>
+                <div><input type="text" defaultValue={client.notes} /></div>
+              </>
+                ) : (
+                  // Modo visualização (texto)
+                  <>
+                    <div>{client.name}</div>
+                    <div>{client.contact}</div>
+                    <div>{client.location}</div>
+                    <div>{client.notes}</div>
+                  </>
+                )}
+
+                <EditionMenu 
+                  id={client.id} 
+                  editVariable={props.editClient} 
+                  setEditFunction={props.setEditClient} 
+                  edit={handleEditClient}
+                  delete={handleDeleteClient}
+                  trigger={props.clientsTrigger}
+                  setTrigger={props.setClientsTrigger}
+                />
+              </li>
+              ))
+            : <Empty />
+          }
           </ul>
         </section>
 

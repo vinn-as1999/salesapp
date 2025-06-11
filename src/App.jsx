@@ -10,10 +10,15 @@ import ClientsPage from "./pages/ClientsPage";
 
 const App = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    const [clientsTrigger, setClientsTrigger] = useState(null);
     const [saleTrigger, setSaleTrigger] = useState(null);
     const [productTrigger, setProductTrigger] = useState(null);
+
+    const [editClient, setEditClient] = useState(null);
     const [editSale, setEditSale] = useState(null);
     const [editProduct, setEditProduct] = useState(null);
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -39,6 +44,10 @@ const App = () => {
               <Route path="/home/clients" 
                 element={<ClientsPage 
                   isMobile={isMobile}
+                  editClient={editClient} 
+                  setEditClient={setEditClient} 
+                  clientsTrigger={clientsTrigger} 
+                  setClientsTrigger={setClientsTrigger}
                 />} 
               />
               <Route path="/home/sales" 

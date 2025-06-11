@@ -5,36 +5,42 @@ const ClientsContext = createContext();
 const ClientsProvider = ({children}) => {
 const [clients, setClients] = useState([
     {
+      id: 1,
       name: 'João Marcos',
       contact: '(11) 91234-5678',
       location: 'São Paulo - SP',
       notes: 'Cliente antigo, prefere contato por WhatsApp.'
     },
     {
+      id: 2,
       name: 'Maria Aparecida',
       contact: '(21) 99876-5432',
       location: 'Rio de Janeiro - RJ',
       notes: 'Comprou recentemente, interessada em promoções.'
     },
     {
+      id: 3,
       name: 'Carlos Eduardo',
       contact: '(31) 98765-4321',
       location: 'Belo Horizonte - MG',
       notes: 'Solicitou orçamento para grande volume.'
     },
     {
+      id: 4,
       name: 'Fernanda Souza',
       contact: '(41) 97654-3210',
       location: 'Curitiba - PR',
       notes: 'Cliente nova, enviou feedback positivo.'
     },
     {
+      id: 5,
       name: 'Rafael Oliveira',
       contact: '(51) 96543-2109',
       location: 'Porto Alegre - RS',
       notes: 'Sempre compra no começo do mês.'
     },
     {
+      id: 6,
       name: 'Amanda Ribeiro',
       contact: '(71) 95432-1098',
       location: 'Salvador - BA',
