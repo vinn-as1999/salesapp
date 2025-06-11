@@ -11,6 +11,16 @@ function SalesPage(props) {
   const { sales } = useContext(ClientsContext);
 
 
+  async function handleEditSale(id) {
+    console.log('editou venda');
+  }
+
+  async function handleDeleteSale(id) {
+    console.log('deletou venda');
+    console.log(props.saleTrigger)
+  }
+
+
   return (
     <>
       <main className={props.isMobile ? "sales-main mobile" : "sales-main pc"}>
@@ -52,21 +62,36 @@ function SalesPage(props) {
                     key={sale.saleId} 
                     onClick={(e) => {
                       e.stopPropagation(); 
-                      props.setEditSale(sale.saleId)
+                      props.setEditSale(sale.saleId);
+                      console.log(sale.saleId)
                     }} 
                     style={{position: 'relative'}}
                   >
+                    {
+                      props.saleTrigger === sale.saleId ?
+                      <>
+                        <div><input type="text" value={sale.client} /></div>
+                        <div><input type="text" value={sale.product} /></div>
+                        <div><input type="text" value={sale.value} /></div>
+                        <div><input type="text" value={sale.date} /></div>
+                      </>
 
-                    <div>{sale.client}</div>
-                    <div>{sale.product}</div>
-                    <div>{sale.value}</div>
-                    <div>{sale.date}</div>
+                      : <>
+                          <div>{sale.client}</div>
+                          <div>{sale.product}</div>
+                          <div>{sale.value}</div>
+                          <div>{sale.date}</div>
+                        </>
+                    }
 
                     <EditionMenu 
                       id={sale.saleId} 
                       editVariable={props.editSale} 
                       setEditFunction={props.setEditSale} 
-                      functionParams={'sale'}
+                      edit={handleEditSale}
+                      delete={handleDeleteSale}
+                      trigger={props.saleTrigger}
+                      setTrigger={props.setSaleTrigger}
                     />
                   </li>
               )) 

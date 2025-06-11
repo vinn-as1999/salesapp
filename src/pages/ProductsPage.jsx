@@ -16,6 +16,15 @@ function ProductsPage(props) {
   const fieldClassName = name ? 'info-field has-content' : 'info-field';
 
 
+  async function handleEditProduct(id) {
+    console.log('editou produto');
+  }
+
+  async function handleDeleteProduct(id) {
+    console.log('deletou produto');
+  }
+
+
   return (
     <>
       <main className={props.isMobile ? "products-main mobile" : "products-main pc"}>
@@ -87,16 +96,34 @@ function ProductsPage(props) {
                       }}
                       style={{position: 'relative'}}
                     >
-
-                      <div>{product.name}</div>
-                      <div>{product.price}</div>
-                      <div>{product.quantity}</div>
+                      {
+                        props.productTrigger === product.id
+                          ? <div className='edit-field'>
+                              <div>
+                                <input className='edit-input' type="text" value={product.name} />
+                              </div>
+                              <div>
+                                <input className='edit-input' type="text" value={product.price} />
+                              </div>
+                              <div>
+                                <input className='edit-input' type="text" value={product.quantity} />
+                              </div>
+                            </div>
+                          : <>
+                              <div>{product.name}</div>
+                              <div>{product.price}</div>
+                              <div>{product.quantity}</div>
+                            </>
+                      }
 
                       <EditionMenu 
                         id={product.id} 
                         editVariable={props.editProduct} 
-                        setEditFunction={props.setEditProduct} 
-                        functionParams={'product'}
+                        setEditFunction={props.setEditProduct}
+                        edit={handleEditProduct}
+                        delete={handleDeleteProduct}
+                        trigger={props.productTrigger}
+                        setTrigger={props.setProductTrigger}
                       />
                     </li>
                   ))

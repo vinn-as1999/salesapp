@@ -58,7 +58,8 @@ h3 {
   display: flex;
   flex-direction: column;
   top: 50%;
-  right: 10%;
+  right: 100%;
+  width: 10% !important;
   transform: translateY(-50%);
   text-align: center;
   z-index: 10; 
@@ -75,6 +76,10 @@ h3 {
     color: $text-primary;
   }
 
+  .save-bttn {
+    color: $color-success;
+  }
+
   .delete-bttn {
     color: $color-danger;
   }
@@ -82,4 +87,25 @@ h3 {
   .close-bttn {
     color: $color-danger;
   }
+}
+
+.edit-field {
+  display: flex;
+  padding: 0 !important;
+
+  div {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .edit-input {
+    width: 80%;
+    margin: 0 !important;
+  }
+}
+
+
+@keyframes appears {
+  from { right: 150%; }
+  to { right: 100%; }
 }

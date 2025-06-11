@@ -10,6 +10,8 @@ import ClientsPage from "./pages/ClientsPage";
 
 const App = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const [saleTrigger, setSaleTrigger] = useState(null);
+    const [productTrigger, setProductTrigger] = useState(null);
     const [editSale, setEditSale] = useState(null);
     const [editProduct, setEditProduct] = useState(null);
 
@@ -24,6 +26,7 @@ const App = () => {
       window.removeEventListener("resize", handleResize)
     }
   }, [isMobile])
+  
 
   return (
     <>
@@ -33,9 +36,29 @@ const App = () => {
             <Routes>
               <Route path = "/login" element={<LoginPage isMobile={isMobile} />} />
               <Route path="/home" element={<Home isMobile={isMobile} />} />
-              <Route path="/home/clients" element={<ClientsPage isMobile={isMobile} editSale={editSale} setEditSale={setEditSale} />} />
-              <Route path="/home/sales" element={<SalesPage isMobile={isMobile} editSale={editSale} setEditSale={setEditSale} />} />
-              <Route path="/home/products" element={<ProductsPage isMobile={isMobile} editProduct={editProduct} setEditProduct={setEditProduct} />} />
+              <Route path="/home/clients" 
+                element={<ClientsPage 
+                  isMobile={isMobile}
+                />} 
+              />
+              <Route path="/home/sales" 
+                element={<SalesPage 
+                  isMobile={isMobile} 
+                  editSale={editSale} 
+                  setEditSale={setEditSale}
+                  saleTrigger={saleTrigger} 
+                  setSaleTrigger={setSaleTrigger}
+                />} 
+              />
+              <Route path="/home/products" 
+                element={<ProductsPage 
+                  isMobile={isMobile} 
+                  editProduct={editProduct} 
+                  setEditProduct={setEditProduct} 
+                  productTrigger={productTrigger} 
+                  setProductTrigger={setProductTrigger}
+                />} 
+              />
             </Routes>
           </BrowserRouter>
         </ProductsProvider>
