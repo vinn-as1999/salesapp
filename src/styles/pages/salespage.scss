@@ -13,9 +13,13 @@
   display: flex;
   flex-direction: column;
 
+  .sales-list {
+    height: 50vh;
+  }
+
   .sales-list ul {
-    min-height: 45vh;
-    max-height: 45vh;
+    min-height: 50vh;
+    max-height: 50vh;
     overflow-y: auto;
 
     span { 

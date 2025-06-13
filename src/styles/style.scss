@@ -4,6 +4,7 @@
 @use './components/navbar.scss';
 @use './components/billing.scss';
 @use './components/aside.scss';
+@use './components/empty.scss';
 
 // pages
 @use './pages/loginpage.scss';
@@ -17,6 +18,10 @@
   height: 100vh;
 }
 
+ul {
+  all: unset;
+}
+
 body {
   background-color: #ffff;
   font-family: 'Raleway', sans-serif;
@@ -25,7 +30,7 @@ body {
 
 h2 {
   color: $text-primary;
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin: 5%;
 
   display: flex;

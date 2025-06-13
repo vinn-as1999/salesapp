@@ -95,6 +95,7 @@ function ProductsPage(props) {
                         props.setEditProduct(product.id);
                       }}
                       style={{position: 'relative'}}
+                      title={product.name}
                     >
                       {
                         props.productTrigger === product.id
