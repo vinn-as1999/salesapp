@@ -32,7 +32,7 @@ const Home = (props) => {
                       </linearGradient>
                     </defs>
                     {/* 
-                      calculo: (n * 10) / 5              
+                      CÁLCULO: (n * 10) / 5              
                     */}
                     <rect className="bar" x="0" y="5" width={(value.value * 10) / 5} height="10" fill="url(#barGradient)" />
                   </svg>
