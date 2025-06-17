@@ -4,6 +4,7 @@ import ProtectedRoute from './ProtectedRoute'
 import Home from "./pages/Home";
 import { ClientsProvider } from "./contexts/ClientsContext";
 import { ProductsProvider } from "./contexts/ProductsContext";
+import Loading from "./pages/Loading";
 import LoginPage from "./pages/LoginPage";
 import SalesPage from "./pages/SalesPage";
 import ProductsPage from "./pages/ProductsPage";
@@ -40,7 +41,8 @@ const App = () => {
         <ProductsProvider>
           <BrowserRouter>
             <Routes>
-              <Route path = "/login" element={<LoginPage isMobile={isMobile} />} />
+              <Route path="/login" element={<LoginPage isMobile={isMobile} />} />
+              <Route path="/loading" element={<Loading />} />
 
               <Route element={<ProtectedRoute />}>
                 <Route path="/home" element={<Home isMobile={isMobile} />} />

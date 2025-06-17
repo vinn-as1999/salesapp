@@ -24,15 +24,27 @@ function RegisterForm(props) {
 
     const requestBody = { name, email, password };
 
-    const response = await fetch('http://localhost:5152/register', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(requestBody)
-    });
+    try {
+      const response = await fetch('http://localhost:5152/register', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(requestBody)
+      });
 
-    
+      if (!response.ok) {
+        console.log("Erro: ", response)
+        return;
+      }
+
+      const data = await response.json();
+
+      console.log("Resposta do servidor: ", data)
+
+    } catch (error) {
+      console.log(error)
+    }
   }
 
 
