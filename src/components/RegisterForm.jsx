@@ -9,6 +9,7 @@ function RegisterForm(props) {
   const nameClassName = name ? 'login-field has-content' : 'login-field';
   const emailClassName = email ? 'login-field has-content' : 'login-field';
   const pswdClassName = password ? 'login-field has-content' : 'login-field';
+  const confirmPswdClassName = confirmPswd ? 'login-field has-content' : 'login-field';
 
 
   async function registerUser() {
@@ -76,7 +77,7 @@ function RegisterForm(props) {
               onChange={(e) => setName(e.target.value)} 
             />
           </div>
-          <div className={nameClassName}>
+          <div className={emailClassName}>
             <label>Email</label>
             <input 
               placeholder='joão@exemplo.com' 
@@ -85,16 +86,16 @@ function RegisterForm(props) {
               onChange={(e) => setEmail(e.target.value)} 
             />
           </div>
-          <div className={emailClassName}>
+          <div className={pswdClassName}>
             <label>Senha</label>
             <input 
-              placeholder='ex: 123456' 
+              placeholder='ex: João@123' 
               type="password" 
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
             />
           </div>
-          <div className={pswdClassName}>
+          <div className={confirmPswdClassName}>
             <label>Confirmar Senha</label>
             <input 
               placeholder='Confirme sua senha' 

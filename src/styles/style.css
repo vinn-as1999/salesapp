@@ -151,6 +151,8 @@ aside div:hover {
   padding: 5px;
   margin: 5px;
   width: 80%;
+  border-bottom: solid 1px #F4F4F4;
+  transition: ease-in-out 0.3s;
 }
 .login-main.mobile .forms form .login-field.has-content input {
   all: unset;
@@ -158,6 +160,7 @@ aside div:hover {
   margin: 5px;
   border-bottom: solid 1px #9b9d9e;
   width: 85%;
+  transition: ease-in-out 0.3s;
 }
 .login-main.mobile .forms form button {
   all: unset;
