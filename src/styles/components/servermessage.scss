@@ -1,0 +1,24 @@
+@use '../variables.scss' as *;
+
+
+.server-message {
+  position: absolute;
+  text-align: center;
+  background-color: $color-success;
+  color: $text-secondary;
+  top: 1%;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.server-message.error {
+  position: absolute;
+  text-align: center;
+  background-color: $color-danger;
+  color: $text-secondary;
+  top: 1%;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 10px;
+}

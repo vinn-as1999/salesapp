@@ -1,15 +1,12 @@
 import { useState } from 'react'
-import { AiOutlineMail } from "react-icons/ai";
-import Navigation from '../components/Navigation';
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
+import ServerMessage from '../components/ServerMessage';
 
 function LoginPage(props) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [registering, setRegistering] = useState(true);
-  const emailClassName = email ? 'login-field has-content' : 'login-field';
-  const pswdClassName = password ? 'login-field has-content' : 'login-field';
+  const [serverMessage, setServerMessage] = useState('');
+  const [error, setError] = useState(false);
 
   return (
     <>
@@ -22,9 +19,16 @@ function LoginPage(props) {
 
         <section className="forms">
           {
+            serverMessage !== '' && <ServerMessage message={serverMessage} error={error} />
+          }
+          {
             registering
-              ? <LoginForm setRegistering={setRegistering} />
-              : <RegisterForm setRegistering={setRegistering} /> 
+              ? <LoginForm 
+                  error={error} setError={setError} setServerMessage={setServerMessage} setRegistering={setRegistering} 
+                />
+              : <RegisterForm 
+                  error={error} setError={setError} setRegistering={setRegistering} setServerMessage={setServerMessage}
+                /> 
           }
         </section>
       </main>

@@ -5,6 +5,8 @@ function LoginForm(props) {
   const [password, setPassword] = useState('');
   const emailClassName = email ? 'login-field has-content' : 'login-field';
   const pswdClassName = password ? 'login-field has-content' : 'login-field';
+
+  
   return (
     <div>
       <main style={{

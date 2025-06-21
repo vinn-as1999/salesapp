@@ -55,6 +55,28 @@ aside div:hover {
   color: grey;
 }
 
+.server-message {
+  position: absolute;
+  text-align: center;
+  background-color: #2ECC71;
+  color: #d8dbdb;
+  top: 1%;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.server-message.error {
+  position: absolute;
+  text-align: center;
+  background-color: #E74C3C;
+  color: #d8dbdb;
+  top: 1%;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 10px;
+}
+
 .login-main.pc {
   display: flex;
   flex-direction: row;

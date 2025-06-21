@@ -12,10 +12,6 @@ function RegisterForm(props) {
 
 
   async function registerUser() {
-    if (!name || !email || !password || !confirmPswd) {
-      console.log("n tem dados :(")
-      return
-    }
 
     if (password !== confirmPswd) {
       console.log("senha n combina :(")
@@ -39,11 +35,24 @@ function RegisterForm(props) {
       }
 
       const data = await response.json();
+      const message = data[0].message
+      const status = data[1]
 
-      console.log("Resposta do servidor: ", data)
+      props.setServerMessage(message);
+      props.setError(false);
 
+      if (status !== 201) {
+        props.setError(true);
+        return
+      }
+
+      setName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPswd('');
+      
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
@@ -80,7 +89,7 @@ function RegisterForm(props) {
             <label>Senha</label>
             <input 
               placeholder='ex: 123456' 
-              type="text" 
+              type="password" 
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
             />
@@ -99,8 +108,12 @@ function RegisterForm(props) {
             Cadastrar
           </button>
           <div className="register">
-            Já tem uma conta?{' '}
-            <span onClick={() => props.setRegistering(prev => !prev)}>
+            Já tem uma conta?
+            <span onClick={() => {
+                props.setError(false); 
+                props.setRegistering(prev => !prev);
+                props.setServerMessage('')
+              }}>
               Faça o login
             </span>
           </div>
