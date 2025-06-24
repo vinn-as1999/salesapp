@@ -30,12 +30,8 @@ function RegisterForm(props) {
         body: JSON.stringify(requestBody)
       });
 
-      if (!response.ok) {
-        console.log("Erro: ", response)
-        return;
-      }
-
       const data = await response.json();
+      console.log(data)
       const message = data[0].message
       const status = data[1]
 
@@ -61,11 +57,11 @@ function RegisterForm(props) {
   return (
     <div>
       <main style={{
-        display: 'flex', 
-        flexDirection: 'column', 
-        justifyContent: 'center', 
-        alignItems: 'center'
-      }}>
+          display: 'flex', 
+          flexDirection: 'column', 
+          justifyContent: 'center', 
+          alignItems: 'center'
+        }}>
         <h1>Cadastro</h1>
         <form onSubmit={(e) => { e.preventDefault(); registerUser(); }}>
           <div className={nameClassName}>
