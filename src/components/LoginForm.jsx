@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { UserContext } from '../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 
 function LoginForm(props) {
+  const { setIsAdmin } = useContext(UserContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const emailClassName = email ? 'login-field has-content' : 'login-field';
@@ -23,12 +25,11 @@ function LoginForm(props) {
       });
 
       const data = await response.json();
-      
-      console.log('o data: ', data);
 
       const message = data.message;
       const status = response.status;
       const token = data.token;
+      const admin = data.is_admin;
 
       props.setServerMessage(message);
       props.setError(false);
@@ -38,11 +39,14 @@ function LoginForm(props) {
         return
       }
 
+      setIsAdmin(admin);
+
       localStorage.setItem('token', token);
       navigate('/home');
 
     } catch (error) {
-      console.log("Erro na autenticação:", error);
+      console.log("Erro interno na autenticação: ", error);
+      props.setServerMessage("Erro inesperado ocorreu.");
       props.setError(true);
     }
   };

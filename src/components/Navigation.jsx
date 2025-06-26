@@ -26,7 +26,7 @@ function Navigation(props) {
             <div onClick={() => navigate("/home/products")}>
               <BsBox />
             </div>
-            <div>
+            <div onClick={() => {navigate("/login"); localStorage.clear()}}>
               <GrLogout />
             </div>
           </nav>

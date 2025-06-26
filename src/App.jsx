@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from './ProtectedRoute'
 import Home from "./pages/Home";
+import { UserProvider } from "./contexts/UserContext";
 import { ClientsProvider } from "./contexts/ClientsContext";
 import { ProductsProvider } from "./contexts/ProductsContext";
 import LoginPage from "./pages/LoginPage";
@@ -36,46 +37,47 @@ const App = () => {
 
   return (
     <>
-      <ClientsProvider>
-        <ProductsProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/login" element={<LoginPage isMobile={isMobile} />} />
-
-              <Route element={<ProtectedRoute />}>
-                <Route path="/home" element={<Home isMobile={isMobile} />} />
-                <Route path="/home/clients"
-                  element={<ClientsPage
-                    isMobile={isMobile}
-                    editClient={editClient}
-                    setEditClient={setEditClient}
-                    clientsTrigger={clientsTrigger}
-                    setClientsTrigger={setClientsTrigger}
-                  />}
-                />
-                <Route path="/home/sales"
-                  element={<SalesPage
-                    isMobile={isMobile}
-                    editSale={editSale}
-                    setEditSale={setEditSale}
-                    saleTrigger={saleTrigger}
-                    setSaleTrigger={setSaleTrigger}
-                  />}
-                />
-                <Route path="/home/products"
-                  element={<ProductsPage
-                    isMobile={isMobile}
-                    editProduct={editProduct}
-                    setEditProduct={setEditProduct}
-                    productTrigger={productTrigger}
-                    setProductTrigger={setProductTrigger}
-                  />}
-                />
-              </Route>
-            </Routes>
-          </BrowserRouter>
-        </ProductsProvider>
-      </ClientsProvider>
+      <UserProvider>
+        <ClientsProvider>
+          <ProductsProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/login" element={<LoginPage isMobile={isMobile} />} />
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/home" element={<Home isMobile={isMobile} />} />
+                  <Route path="/home/clients"
+                    element={<ClientsPage
+                      isMobile={isMobile}
+                      editClient={editClient}
+                      setEditClient={setEditClient}
+                      clientsTrigger={clientsTrigger}
+                      setClientsTrigger={setClientsTrigger}
+                    />}
+                  />
+                  <Route path="/home/sales"
+                    element={<SalesPage
+                      isMobile={isMobile}
+                      editSale={editSale}
+                      setEditSale={setEditSale}
+                      saleTrigger={saleTrigger}
+                      setSaleTrigger={setSaleTrigger}
+                    />}
+                  />
+                  <Route path="/home/products"
+                    element={<ProductsPage
+                      isMobile={isMobile}
+                      editProduct={editProduct}
+                      setEditProduct={setEditProduct}
+                      productTrigger={productTrigger}
+                      setProductTrigger={setProductTrigger}
+                    />}
+                  />
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          </ProductsProvider>
+        </ClientsProvider>
+      </UserProvider>
     </>
   )
 };

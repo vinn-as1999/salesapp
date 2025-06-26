@@ -1,9 +1,9 @@
-import { useEffect, useState, useContext } from "react"
-import Navigation from "../components/Navigation"
-import BillingButton from "../components/BillingButton"
-import { ClientsContext } from "../contexts/ClientsContext"
-import Empty from "../components/Empty"
-import { IoCheckmarkDone } from "react-icons/io5"
+import { useEffect, useState, useContext } from "react";
+import Navigation from "../components/Navigation";
+import BillingButton from "../components/BillingButton";
+import { ClientsContext } from "../contexts/ClientsContext";
+import Empty from "../components/Empty";
+import { IoCheckmarkDone } from "react-icons/io5";
 
 
 const Home = (props) => {
