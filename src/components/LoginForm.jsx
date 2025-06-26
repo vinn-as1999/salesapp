@@ -28,6 +28,10 @@ function LoginForm(props) {
 
       const message = data.message;
       const status = response.status;
+
+      const userId = data.user_id;
+      const userEmail = data.user_email;
+      const userName = data.user_name;
       const token = data.token;
       const admin = data.is_admin;
 
@@ -40,8 +44,11 @@ function LoginForm(props) {
       }
 
       setIsAdmin(admin);
-
       localStorage.setItem('token', token);
+      localStorage.setItem('id', userId);
+      localStorage.setItem('name', userName);
+      localStorage.setItem('email', userEmail);
+      props.setError(false);
       navigate('/home');
 
     } catch (error) {
