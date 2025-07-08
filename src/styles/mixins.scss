@@ -8,9 +8,9 @@
   border-left: solid 1px $chart-color-1;
 
   div {
-    padding: 3%;
+    padding: 3% 0;
     background-color: rgb(230, 232, 233);
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin: 3% 0;
     width: 100%;
     text-align: center;
@@ -41,12 +41,18 @@
 
     .info-field input {
       all: unset;
+      padding: 3px;
+      border: solid 1px transparent;
       border-bottom: solid 1px $color-secondary;
       
       &:focus {
         border-bottom: solid 1px $color-primary;
       }
     }
+
+    .info-field .errorInput {
+      border: solid 1px #E43232;
+    } 
     
     .info-field.has-content input {
       border-bottom: solid 1px $color-primary;

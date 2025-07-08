@@ -10,20 +10,51 @@ import EditionMenu from '../components/EditionMenu'
 function ClientsPage(props) {
   const { clients, setClients } = useContext(ClientsContext);
 
-  const [name, setName] = useState('')
-  const [contact, setContact] = useState('')
-  const [location, setLocation] = useState('')
-  const [notes, setNotes] = useState('')
+  const id = localStorage.getItem('id');
+  const [name, setName] = useState('');
+  const [contact, setContact] = useState('');
+  const [location, setLocation] = useState('');
+  const [notes, setNotes] = useState('');
   const fieldClassName = name ? 'info-field has-content' : 'info-field';
+
+  async function registerClient(event) {
+    event.preventDefault();
+
+    const requestBody = {
+      id,
+      name,
+      contact,
+      location,
+      notes
+    };
+
+    try {
+      const response = await fetch("http://localhost:5152/clients", {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(requestBody)
+      });
+
+      const data = await response.json();
+      console.log(data.client_data)
+      setClients(prevClients => [...prevClients, data.client_data]);
+
+    } catch(error) {
+      console.log('Erro: ', error);
+    }
+  };
 
 
   async function handleEditClient(id) {
     console.log('editou cliente');
-  }
+  };
 
   async function handleDeleteClient(id) {
     console.log('deletou cliente');
-  }
+  };
 
 
   return (
@@ -34,7 +65,7 @@ function ClientsPage(props) {
         <h2>Clientes</h2>
 
         <section className="clients-list">
-          <form className="clients-list-form">
+          <form className="clients-list-form" onSubmit={(e) => registerClient(e)}>
             <div className={fieldClassName}>
               <label>Nome</label>
               <input autoFocus={true} 
@@ -80,44 +111,39 @@ function ClientsPage(props) {
           </form>
 
           <ul>
-            <li>
-              <span>Nome</span>
-              <span>Contato</span>
-              <span>Local</span>
-              <span>Observação</span>
-            </li>
             {
               clients.length > 0
                 ? clients.map(client => (
                     <li
-                      key={client.id}
+                      key={client._id}
                       onClick={(e) => {
                         e.stopPropagation();
-                        props.setEditClient(client.id);
+                        props.setEditClient(client._id);
                       }}
                       style={{ position: 'relative' }}
                     >
-          {
-            props.clientsTrigger === client.id ? (
-              // Modo edição (inputs)
-              <>
-                <div><input type="text" defaultValue={client.name} /></div>
-                <div><input type="text" defaultValue={client.contact} /></div>
-                <div><input type="text" defaultValue={client.location} /></div>
-                <div><input type="text" defaultValue={client.notes} /></div>
-              </>
-                ) : (
-                  // Modo visualização (texto)
+              {
+                props.clientsTrigger === client._id ? (
+                  // Modo edição (inputs)
                   <>
-                    <div>{client.name}</div>
-                    <div>{client.contact}</div>
-                    <div>{client.location}</div>
-                    <div>{client.notes}</div>
+                    <div><input type="text" defaultValue={client.client} /></div>
+                    <div><input type="text" defaultValue={client.contact} /></div>
+                    <div><input type="text" defaultValue={client.location} /></div>
+                    <div><input type="text" defaultValue={client.notes} /></div>
                   </>
-                )}
+                  ) : (
+                    // Modo visualização (texto)
+                    <>
+                      <div>{client.client}</div>
+                      <div>{client.contact}</div>
+                      <div>{client.location}</div>
+                      <div>{client.notes ? client.notes : "..."}</div>
+                    </>
+                )
+              }
 
                 <EditionMenu 
-                  id={client.id} 
+                  id={client._id} 
                   editVariable={props.editClient} 
                   setEditFunction={props.setEditClient} 
                   edit={handleEditClient}

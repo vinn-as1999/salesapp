@@ -7,22 +7,56 @@ import Empty from '../components/Empty'
 import EditionMenu from '../components/EditionMenu'
 
 function ProductsPage(props) {
+  const [category, setCategory] = useState('');
   const [name, setName] = useState('');
   const [price, setPrice] = useState();
   const [quantity, setQuantity] = useState();
-  const [category, setCategory] = useState('');
-  const [description, setDescription] = useState('');
-  const { products, setProducts } = useContext(ProductsContext);
-  const fieldClassName = name ? 'info-field has-content' : 'info-field';
+  const {products, setProducts} = useContext(ProductsContext);
+
+  const [errors, setErrors] = useState({
+    category: false,
+    name: false,
+    price: false,
+    quantity: false
+  });
+
+  const categoryClassName = category ? 'info-field has-content' : 'info-field';
+  const nameClassName = name ? 'info-field has-content' : 'info-field';
+  const priceClassName = price ? 'info-field has-content' : 'info-field';
+  const quantityClassName = quantity ? 'info-field has-content' : 'info-field';
+
+
+  async function registerProduct(event) {
+    event.preventDefault();
+
+    const newErrors = {
+      category: !category.trim(),
+      name: !name.trim(),
+      price: !price,
+      quantity: !quantity
+    }
+
+    setErrors(newErrors)
+
+    const requestBody = {
+      category,
+      name,
+      price,
+      quantity
+    }
+
+    
+  };
 
 
   async function handleEditProduct(id) {
     console.log('editou produto');
-  }
+  };
+
 
   async function handleDeleteProduct(id) {
     console.log('deletou produto');
-  }
+  };
 
 
   return (
@@ -33,37 +67,41 @@ function ProductsPage(props) {
         <h2>Produtos</h2>
 
         <section className="products-list">
-          <form className='products-list-form'>
-            <div className={fieldClassName}>
+          <form className='products-list-form' onSubmit={(e) => registerProduct(e)}>
+            <div className={categoryClassName}>
               <label>Categoria</label>
               <input autoFocus={true} 
+                className={errors.category ? 'errorInput' : ''}
                 type="text" 
-                value={name} 
-                onChange={(e) => setName(e.target.value)}
+                value={category} 
+                onChange={(e) => setCategory(e.target.value)}
                 placeholder='ex: Doces' />
             </div>
 
-            <div className={fieldClassName}>
+            <div className={nameClassName}>
               <label>Produto</label>
               <input 
+                className={errors.name ? 'errorInput' : ''}
                 type="text" 
                 value={name} 
                 onChange={(e) => setName(e.target.value)}
                 placeholder='ex: Paçoca' />
             </div>
 
-            <div className={fieldClassName}>
+            <div className={priceClassName}>
               <label>Valor</label>
               <input 
+                className={errors.price ? 'errorInput' : ''}
                 type="number" 
                 value={price} 
                 onChange={(e) => setPrice(Number(e.target.value))} 
                 placeholder='ex: 1.00' />
             </div>
 
-            <div className={fieldClassName}>
+            <div className={quantityClassName}>
               <label>Quantidade</label>
               <input 
+                className={errors.quantity ? 'errorInput' : ''}
                 type="number" 
                 value={quantity} 
                 onChange={(e) => setQuantity(Number(e.target.value))}
@@ -72,7 +110,7 @@ function ProductsPage(props) {
 
             <div className="save-field">
               <label>Registrar</label>
-              <button className='save'>
+              <button type='submit' className='save'>
                 <IoCheckmarkCircle />
               </button>
             </div>

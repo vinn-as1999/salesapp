@@ -1,24 +1,36 @@
-import { useContext, useEffect, useState } from 'react'
-import { ClientsContext } from '../contexts/ClientsContext'
-import { IoCheckmarkCircle } from 'react-icons/io5'
-import Navigation from '../components/Navigation'
-import Empty from '../components/Empty'
-import BillingButton from '../components/BillingButton'
-import EditionMenu from '../components/EditionMenu'
+import { useContext, useEffect, useState } from 'react';
+import { ClientsContext } from '../contexts/ClientsContext';
+import { ProductsContext } from '../contexts/ProductsContext';
+import { IoCheckmarkCircle } from 'react-icons/io5';
+import Navigation from '../components/Navigation';
+import Empty from '../components/Empty';
+import BillingButton from '../components/BillingButton';
+import EditionMenu from '../components/EditionMenu';
 
 
 function SalesPage(props) {
-  const { sales } = useContext(ClientsContext);
+  const {sales} = useContext(ClientsContext);
+  const {products} = useContext(ProductsContext);
+  const [clientName, setClientName] = useState('');
+  const [productName, setProductName] = useState('');
+
+
+  async function registerSale() {
+    const requestBody = {
+      name: clientName,
+      product: productName
+    }
+  };
 
 
   async function handleEditSale(id) {
     console.log('editou venda');
-  }
+  };
 
   async function handleDeleteSale(id) {
     console.log('deletou venda');
     console.log(props.saleTrigger)
-  }
+  };
 
 
   return (
@@ -31,12 +43,20 @@ function SalesPage(props) {
         <section className="sales-list-form">
           <div className="info-field">
             <label htmlFor="">Cliente</label>
-            <input type="text" placeholder='ex: João' />
+            <input type="text" 
+              placeholder='ex: João'
+              value={clientName}
+              onChange={(e) => setClientName(e.target.value)} 
+            />
           </div>
 
           <div className="info-field">
             <label htmlFor="">Produto</label>
-            <input type="text" placeholder='ex: Paçoca' />
+            <input type="text" 
+              placeholder='ex: Paçoca'
+              value={productName}
+              onChange={(e) => setProductName(e.target.value)} 
+            />
           </div>
 
           <div className="save-field">

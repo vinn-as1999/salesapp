@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const ClientsContext = createContext();
 
@@ -8,9 +8,30 @@ const ClientsProvider = ({children}) => {
   const [pending, setPending] = useState([]);
   const [pendingValues, setPendingValues] = useState([]);
 
-  // o useEffect vai puxar os dados dos clientes ao montar o componente
 
-  // a partir daí, ele vai monitorar a lista de clientes e atualizar o estado quando houver mudança
+  async function getClients(id) {
+    try {
+      if (!id) id = localStorage.getItem("id");
+
+      const response = await fetch(`http://localhost:5152/clients/${id}`, {
+        method: 'GET',
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      const data = await response.json();
+      console.log(data)
+      setClients(data);
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getClients();
+  }, []);
   
   // o front-end deve atualizar antes de enviar a requisição ao back-end
 
@@ -20,7 +41,8 @@ const ClientsProvider = ({children}) => {
         clients, setClients,
         pending, setPending,
         pendingValues, setPendingValues,
-        sales, setSales
+        sales, setSales,
+        getClients
       }}>
       {children}
     </ClientsContext.Provider>
