@@ -8,7 +8,7 @@ import EditionMenu from '../components/EditionMenu'
 
 
 function ClientsPage(props) {
-  const { clients, setClients } = useContext(ClientsContext);
+  const { clients, setClients, getClients } = useContext(ClientsContext);
 
   const id = localStorage.getItem('id');
   const [name, setName] = useState('');
@@ -22,11 +22,13 @@ function ClientsPage(props) {
 
     const requestBody = {
       id,
-      name,
+      client: name,
       contact,
       location,
       notes
     };
+
+    setClients(prevClients => [...prevClients, requestBody]);
 
     try {
       const response = await fetch("http://localhost:5152/clients", {
@@ -39,8 +41,8 @@ function ClientsPage(props) {
       });
 
       const data = await response.json();
-      console.log(data.client_data)
-      setClients(prevClients => [...prevClients, data.client_data]);
+      console.log(data.client_data, id)
+      getClients(id);
 
     } catch(error) {
       console.log('Erro: ', error);
@@ -113,17 +115,17 @@ function ClientsPage(props) {
           <ul>
             {
               clients.length > 0
-                ? clients.map(client => (
+                ? clients.map((client, index) => (
                     <li
-                      key={client._id}
+                      key={index}
                       onClick={(e) => {
                         e.stopPropagation();
-                        props.setEditClient(client._id);
+                        props.setEditClient(index);
                       }}
                       style={{ position: 'relative' }}
                     >
               {
-                props.clientsTrigger === client._id ? (
+                props.clientsTrigger === index ? (
                   // Modo edição (inputs)
                   <>
                     <div><input type="text" defaultValue={client.client} /></div>
@@ -143,7 +145,7 @@ function ClientsPage(props) {
               }
 
                 <EditionMenu 
-                  id={client._id} 
+                  idx={index} 
                   editVariable={props.editClient} 
                   setEditFunction={props.setEditClient} 
                   edit={handleEditClient}

@@ -20,8 +20,12 @@ const ClientsProvider = ({children}) => {
           "Authorization": `Bearer ${localStorage.getItem('token')}`
         }
       });
+
+      if (!response.ok) return;
+
       const data = await response.json();
-      console.log(data)
+
+      console.log(data);
       setClients(data);
 
     } catch (error) {
@@ -29,9 +33,7 @@ const ClientsProvider = ({children}) => {
     }
   };
 
-  useEffect(() => {
-    getClients();
-  }, []);
+  useEffect(() => {getClients(localStorage.getItem("id"))}, [])
   
   // o front-end deve atualizar antes de enviar a requisição ao back-end
 
