@@ -25,4 +25,23 @@
   .clients-list-form {
     @include form-style;
   }
+
+  .search-field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    .search-input {
+      padding: 5px;
+      color: $text-primary;
+      border: solid 1px rgb(194, 194, 194);
+      outline: none;
+      transition: ease-in-out 0.2s;
+    }
+
+    .search-input:focus {
+      border-bottom: solid 1px $color-primary;
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import Navigation from '../components/Navigation'
 import BillingButton from '../components/BillingButton'
 import { IoCheckmarkCircle } from "react-icons/io5"
@@ -8,9 +8,11 @@ import EditionMenu from '../components/EditionMenu'
 
 
 function ClientsPage(props) {
-  const { clients, setClients, getClients } = useContext(ClientsContext);
+  const { clients, setClients, getClients, searchClients } = useContext(ClientsContext);
 
   const id = localStorage.getItem('id');
+  const [clientsList, setClientsList] = useState(clients);
+  const [searchTerm, setSearchTerm] = useState('');
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
   const [location, setLocation] = useState('');
@@ -49,7 +51,6 @@ function ClientsPage(props) {
     }
   };
 
-
   async function handleEditClient(id) {
     console.log('editou cliente');
   };
@@ -57,6 +58,10 @@ function ClientsPage(props) {
   async function handleDeleteClient(id) {
     console.log('deletou cliente');
   };
+
+  useEffect(() => {
+    setClientsList(searchClients(searchTerm))
+  }, [searchTerm])
 
 
   return (
@@ -112,10 +117,18 @@ function ClientsPage(props) {
             </div>
           </form>
 
+          <div className="search-field">
+            <input type="text" 
+              value={searchTerm} 
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className='search-input'
+              placeholder='Pesquisar cliente' />
+          </div>
+
           <ul>
             {
-              clients.length > 0
-                ? clients.map((client, index) => (
+              clientsList.length > 0
+                ? clientsList.map((client, index) => (
                     <li
                       key={index}
                       onClick={(e) => {

@@ -33,9 +33,13 @@ const ClientsProvider = ({children}) => {
     }
   };
 
+  function searchClients(name) {
+    return clients.filter(client => 
+      client.client.toLowerCase().includes(name.toLowerCase())
+    );
+  };
+
   useEffect(() => {getClients(localStorage.getItem("id"))}, [])
-  
-  // o front-end deve atualizar antes de enviar a requisição ao back-end
 
   return (
     <ClientsContext.Provider
@@ -44,7 +48,7 @@ const ClientsProvider = ({children}) => {
         pending, setPending,
         pendingValues, setPendingValues,
         sales, setSales,
-        getClients
+        getClients, searchClients
       }}>
       {children}
     </ClientsContext.Provider>

@@ -46,13 +46,14 @@ function LoginForm(props) {
       }
 
       setIsAdmin(admin);
+      props.setError(false);
+
       localStorage.setItem('token', token);
       localStorage.setItem('id', userId);
       localStorage.setItem('name', userName);
       localStorage.setItem('email', userEmail);
-      props.setError(false);
+      
       getClients(userId);
-      console.log('eai ', userId)
       navigate('/home');
 
     } catch (error) {

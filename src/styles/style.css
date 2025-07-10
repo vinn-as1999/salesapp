@@ -359,6 +359,22 @@ aside div:hover {
   margin: 10%;
   color: #2ECC71;
 }
+.clients-main.mobile .search-field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.clients-main.mobile .search-field .search-input {
+  padding: 5px;
+  color: #2C3E50;
+  border: solid 1px rgb(194, 194, 194);
+  outline: none;
+  transition: ease-in-out 0.2s;
+}
+.clients-main.mobile .search-field .search-input:focus {
+  border-bottom: solid 1px #8329ad;
+}
 
 .sales-main.pc {
   display: flex;
