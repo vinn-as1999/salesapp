@@ -29,30 +29,47 @@
     .info-field {
       display: flex;
       align-items: center;
-    }
 
-    .info-field label {
-      margin: 10px;
-      width: 100px;
-      color: $text-tertiary;
-      font-weight: bold;
-      text-align: end
-    }
+      label {
+        margin: 10px;
+        width: 100px;
+        color: $text-tertiary;
+        font-weight: bold;
+        text-align: end
+      }
 
-    .info-field input {
-      all: unset;
-      padding: 3px;
-      border: solid 1px transparent;
-      border-bottom: solid 1px $color-secondary;
-      
-      &:focus {
-        border-bottom: solid 1px $color-primary;
+      input {
+        all: unset;
+        padding: 3px;
+        border: solid 1px transparent;
+        border-bottom: solid 1px $color-secondary;
+        
+        &:focus {
+          border-bottom: solid 1px $color-primary;
+        }
+      }
+
+      .errorInput {
+        border: solid 1px #E43232;
+      } 
+
+      .dropdown {
+        position: absolute;
+        background-color: white;
+        width: 48%;
+        max-height: 20vh;
+        overflow-y: auto;
+
+        div {
+          padding: 3px;
+        }
+
+        div:hover {
+          background-color: $color-primary;
+          color: $text-secondary;
+        }
       }
     }
-
-    .info-field .errorInput {
-      border: solid 1px #E43232;
-    } 
     
     .info-field.has-content input {
       border-bottom: solid 1px $color-primary;

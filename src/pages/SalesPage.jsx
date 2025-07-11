@@ -6,13 +6,18 @@ import Navigation from '../components/Navigation';
 import Empty from '../components/Empty';
 import BillingButton from '../components/BillingButton';
 import EditionMenu from '../components/EditionMenu';
+import Dropdown from '../components/Dropdown';
 
 
 function SalesPage(props) {
-  const {sales} = useContext(ClientsContext);
+  const {sales, clients, searchClients} = useContext(ClientsContext);
   const {products} = useContext(ProductsContext);
+
   const [clientName, setClientName] = useState('');
   const [productName, setProductName] = useState('');
+
+  const [clientsList, setClientsList] = useState([]);
+  const [productsList, setProductsList] = useState([]);
 
 
   async function registerSale() {
@@ -22,7 +27,6 @@ function SalesPage(props) {
     }
   };
 
-
   async function handleEditSale(id) {
     console.log('editou venda');
   };
@@ -31,6 +35,20 @@ function SalesPage(props) {
     console.log('deletou venda');
     console.log(props.saleTrigger)
   };
+
+
+  useEffect(() => {
+    setClientsList(searchClients(clientName));
+
+    if (clientName === '') {
+      setClientsList([]);
+    }
+  }, [clientName])
+
+
+  useEffect(() => {
+    // função de pesquisar produtos
+  }, [productName])
 
 
   return (
@@ -43,20 +61,30 @@ function SalesPage(props) {
         <section className="sales-list-form">
           <div className="info-field">
             <label htmlFor="">Cliente</label>
-            <input type="text" 
-              placeholder='ex: João'
-              value={clientName}
-              onChange={(e) => setClientName(e.target.value)} 
-            />
+            <div>
+              <input type="text"
+                placeholder='ex: João'
+                value={clientName}
+                onChange={(e) => setClientName(e.target.value)}
+              />
+              <div className='dropdown'>
+                <Dropdown list={clientsList} setName={setClientName} setList={setClientsList} />
+              </div>
+            </div>
           </div>
 
           <div className="info-field">
             <label htmlFor="">Produto</label>
-            <input type="text" 
-              placeholder='ex: Paçoca'
-              value={productName}
-              onChange={(e) => setProductName(e.target.value)} 
-            />
+            <div>
+              <input type="text"
+                placeholder='ex: Paçoca'
+                value={productName}
+                onChange={(e) => setProductName(e.target.value)}
+              />
+              <div className='dropdown'>
+                <Dropdown list={productsList} setName={setProductName} setList={setProductsList} />
+              </div>
+            </div>
           </div>
 
           <div className="save-field">

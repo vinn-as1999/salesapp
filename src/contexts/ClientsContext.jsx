@@ -33,13 +33,16 @@ const ClientsProvider = ({children}) => {
     }
   };
 
+
   function searchClients(name) {
     return clients.filter(client => 
       client.client.toLowerCase().includes(name.toLowerCase())
     );
   };
 
+
   useEffect(() => {getClients(localStorage.getItem("id"))}, [])
+  
 
   return (
     <ClientsContext.Provider
