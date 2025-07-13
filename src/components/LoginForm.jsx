@@ -29,7 +29,6 @@ function LoginForm(props) {
       const data = await response.json();
 
       const message = data.message;
-      const status = response.status;
 
       const userId = data.user_id;
       const userEmail = data.user_email;
@@ -40,7 +39,7 @@ function LoginForm(props) {
       props.setServerMessage(message);
       props.setError(false);
 
-      if (status !== 200) {
+      if (!response.ok) {
         props.setError(true);
         return
       }

@@ -7,11 +7,15 @@ import Empty from '../components/Empty'
 import EditionMenu from '../components/EditionMenu'
 
 function ProductsPage(props) {
+  const [id, token] = [localStorage.getItem("id"), localStorage.getItem("token")]
   const [category, setCategory] = useState('');
   const [name, setName] = useState('');
   const [price, setPrice] = useState();
   const [quantity, setQuantity] = useState();
   const {products, setProducts} = useContext(ProductsContext);
+
+  const [serverMessage, setServerMessage] = useState('');
+  const [error, setError] = useState(false);
 
   const [errors, setErrors] = useState({
     category: false,
@@ -29,23 +33,50 @@ function ProductsPage(props) {
   async function registerProduct(event) {
     event.preventDefault();
 
+    const parsedPrice = parseFloat(price);
+    const parsedQuantity = parseInt(quantity);
+
     const newErrors = {
       category: !category.trim(),
       name: !name.trim(),
-      price: !price,
-      quantity: !quantity
+      price: isNaN(parsedPrice) || parsedPrice <= 0,
+      quantity: isNaN(parsedQuantity) || parsedQuantity < 0
+    };
+
+    setErrors(newErrors);
+
+    if (Object.values(newErrors).some(Boolean)) {
+      return;
     }
 
-    setErrors(newErrors)
-
     const requestBody = {
+      id,
       category,
       name,
       price,
       quantity
     }
 
-    
+    const response = await fetch("http://localhost:5152/products", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify(requestBody)
+    });
+
+    const data = await response.json();
+    const message = data.message;
+
+    if (!response.ok) {
+      setServerMessage(message)
+      setError(true);
+      return;
+    }
+
+    setServerMessage(message);
+    setError(false);
   };
 
 

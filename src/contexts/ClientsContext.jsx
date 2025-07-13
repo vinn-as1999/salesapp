@@ -42,7 +42,7 @@ const ClientsProvider = ({children}) => {
 
 
   useEffect(() => {getClients(localStorage.getItem("id"))}, [])
-  
+
 
   return (
     <ClientsContext.Provider

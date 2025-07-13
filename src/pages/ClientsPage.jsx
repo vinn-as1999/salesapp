@@ -48,6 +48,9 @@ function ClientsPage(props) {
 
     } catch(error) {
       console.log('Erro: ', error);
+      setClients(prev => prev.filter(c => {
+        c.client !== name && c.contact !== contact
+      }));
     }
   };
 
