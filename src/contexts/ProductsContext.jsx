@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 
 const ProductsContext = createContext();
@@ -8,11 +8,40 @@ const ProductsProvider = ({children}) => {
   const [categories, setCategories] = useState([]);
 
 
+  async function getProducts(id) {
+    if (!id) id = localStorage.getItem("id");
+
+    try {
+      const response = await fetch(`http://localhost:5152/products/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+
+      if (!response.ok) return;
+
+      const data = await response.json();
+
+      console.log(data);
+      setProducts(data);
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+  useEffect(() => {getProducts(localStorage.getItem('id'))}, []);
+
+
   return (
     <ProductsContext.Provider
       value={{
         products, setProducts, 
-        categories, setCategories
+        categories, setCategories,
+        getProducts
       }}>
       {children}
     </ProductsContext.Provider>

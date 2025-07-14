@@ -12,7 +12,7 @@ function ProductsPage(props) {
   const [name, setName] = useState('');
   const [price, setPrice] = useState();
   const [quantity, setQuantity] = useState();
-  const {products, setProducts} = useContext(ProductsContext);
+  const {products, getProducts, setProducts} = useContext(ProductsContext);
 
   const [serverMessage, setServerMessage] = useState('');
   const [error, setError] = useState(false);
@@ -57,26 +57,33 @@ function ProductsPage(props) {
       quantity
     }
 
-    const response = await fetch("http://localhost:5152/products", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      },
-      body: JSON.stringify(requestBody)
-    });
+    try {
+      const response = await fetch("http://localhost:5152/products", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(requestBody)
+      });
 
-    const data = await response.json();
-    const message = data.message;
+      const data = await response.json();
+      const message = data.message;
 
-    if (!response.ok) {
-      setServerMessage(message)
+      if (!response.ok) {
+        throw new Error(message);
+      }
+      console.log('boa, foi')
+      setServerMessage(message);
+      setError(false);
+
+      getProducts(id);
+
+    } catch (error) {
+      console.log('Erro ao cadastrar produto', error);
+      setServerMessage(error.message);
       setError(true);
-      return;
     }
-
-    setServerMessage(message);
-    setError(false);
   };
 
 
@@ -156,18 +163,18 @@ function ProductsPage(props) {
             </li>
             {
               products.length > 0
-                ? products.map(product => (
+                ? products.map((product, index) => (
                     <li 
-                      key={product.id}
+                      key={index}
                       onClick={(e) => {
                         e.stopPropagation();
-                        props.setEditProduct(product.id);
+                        props.setEditProduct(index);
                       }}
                       style={{position: 'relative'}}
                       title={product.name}
                     >
                       {
-                        props.productTrigger === product.id
+                        props.productTrigger === index
                           ? <div className='edit-field'>
                               <div>
                                 <input className='edit-input' type="text" value={product.name} />
@@ -180,14 +187,14 @@ function ProductsPage(props) {
                               </div>
                             </div>
                           : <>
-                              <div>{product.name}</div>
+                              <div>{product.product}</div>
                               <div>{product.price}</div>
                               <div>{product.quantity}</div>
                             </>
                       }
 
                       <EditionMenu 
-                        id={product.id} 
+                        idx={index} 
                         editVariable={props.editProduct} 
                         setEditFunction={props.setEditProduct}
                         edit={handleEditProduct}

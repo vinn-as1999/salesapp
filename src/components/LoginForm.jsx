@@ -2,10 +2,12 @@ import { useState, useContext } from 'react';
 import { UserContext } from '../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { ClientsContext } from '../contexts/ClientsContext';
+import { ProductsContext } from '../contexts/ProductsContext';
 
 function LoginForm(props) {
   const { setIsAdmin } = useContext(UserContext);
   const { getClients } = useContext(ClientsContext);
+  const { getProducts } = useContext(ProductsContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const emailClassName = email ? 'login-field has-content' : 'login-field';
@@ -53,6 +55,7 @@ function LoginForm(props) {
       localStorage.setItem('email', userEmail);
       
       getClients(userId);
+      getProducts(userId);
       navigate('/home');
 
     } catch (error) {
