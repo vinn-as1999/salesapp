@@ -1,9 +1,9 @@
-import { createContext, useEffect, useState } from "react";
+import {createContext, useEffect, useState} from "react";
 
 
 const ProductsContext = createContext();
 
-const ProductsProvider = ({children}) => {
+const ProductsProvider = ({children, isLoggedIn}) => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
 
@@ -33,7 +33,10 @@ const ProductsProvider = ({children}) => {
   };
 
 
-  useEffect(() => {getProducts(localStorage.getItem('id'))}, []);
+  useEffect(() => {
+    if (isLoggedIn)
+    getProducts(localStorage.getItem('id'))
+  }, [isLoggedIn]);
 
 
   return (

@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from 'react';
-import { ClientsContext } from '../contexts/ClientsContext';
-import { ProductsContext } from '../contexts/ProductsContext';
-import { IoCheckmarkCircle } from 'react-icons/io5';
+import {useContext, useEffect, useState} from 'react';
+import {ClientsContext} from '../contexts/ClientsContext';
+import {ProductsContext} from '../contexts/ProductsContext';
+import {IoCheckmarkCircle} from 'react-icons/io5';
 import Navigation from '../components/Navigation';
 import Empty from '../components/Empty';
 import BillingButton from '../components/BillingButton';
@@ -20,11 +20,13 @@ function SalesPage(props) {
   const [productsList, setProductsList] = useState([]);
 
 
-  async function registerSale() {
+  async function registerSale(id) {
+    if (!id) id = localStorage.getItem("id");
+    
     const requestBody = {
       name: clientName,
       product: productName
-    }
+    };
   };
 
   async function handleEditSale(id) {
@@ -33,7 +35,6 @@ function SalesPage(props) {
 
   async function handleDeleteSale(id) {
     console.log('deletou venda');
-    console.log(props.saleTrigger)
   };
 
 
@@ -105,24 +106,23 @@ function SalesPage(props) {
             </li>
             {
               sales.length > 0 
-                ? sales.map((sale) => (
+                ? sales.map((sale, index) => (
                   <li 
-                    key={sale.saleId} 
+                    key={index} 
                     onClick={(e) => {
                       e.stopPropagation(); 
-                      props.setEditSale(sale.saleId);
-                      console.log(sale.saleId)
+                      props.setEditSale(index);
                     }} 
                     style={{position: 'relative'}}
                   >
                     {
-                      props.saleTrigger === sale.saleId ?
-                      <>
-                        <div><input type="text" value={sale.client} /></div>
-                        <div><input type="text" value={sale.product} /></div>
-                        <div><input type="text" value={sale.value} /></div>
-                        <div><input type="text" value={sale.date} /></div>
-                      </>
+                      props.saleTrigger === index 
+                      ? <>
+                          <div><input type="text" value={sale.client} /></div>
+                          <div><input type="text" value={sale.product} /></div>
+                          <div><input type="text" value={sale.value} /></div>
+                          <div><input type="text" value={sale.date} /></div>
+                        </>
 
                       : <>
                           <div>{sale.client}</div>
@@ -133,7 +133,7 @@ function SalesPage(props) {
                     }
 
                     <EditionMenu 
-                      id={sale.saleId} 
+                      idx={index} 
                       editVariable={props.editSale} 
                       setEditFunction={props.setEditSale} 
                       edit={handleEditSale}

@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import Loading from "./pages/Loading";
 
-export default function ProtectedRoute() {
-  const [isLoggedIn, setIsLoggedIn] = useState(null); // null = carregando
+export default function ProtectedRoute({isLoggedIn, setIsLoggedIn}) {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -18,11 +17,13 @@ export default function ProtectedRoute() {
 
         if (response.status === 200) {
           setIsLoggedIn(true);
+
         } else {
           setIsLoggedIn(false);
         }
 
       } catch (error) {
+
         console.log("Erro na autenticação:", error);
         setIsLoggedIn(false);
       }

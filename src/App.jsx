@@ -12,6 +12,7 @@ import ClientsPage from "./pages/ClientsPage";
 
 const App = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const [isLoggedIn, setIsLoggedIn] = useState(null); // null = carregando
 
     const [clientsTrigger, setClientsTrigger] = useState(null);
     const [saleTrigger, setSaleTrigger] = useState(null);
@@ -38,12 +39,12 @@ const App = () => {
   return (
     <>
       <UserProvider>
-        <ClientsProvider>
-          <ProductsProvider>
+        <ClientsProvider isLoggedIn={isLoggedIn}>
+          <ProductsProvider isLoggedIn={isLoggedIn}>
             <BrowserRouter>
               <Routes>
                 <Route path="/login" element={<LoginPage isMobile={isMobile} />} />
-                <Route element={<ProtectedRoute />}>
+                <Route element={<ProtectedRoute isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}>
                   <Route path="/home" element={<Home isMobile={isMobile} />} />
                   <Route path="/home/clients"
                     element={<ClientsPage

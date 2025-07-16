@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 
 const ClientsContext = createContext();
 
-const ClientsProvider = ({children}) => {
+const ClientsProvider = ({children, isLoggedIn}) => {
   const [clients, setClients] = useState([]);
   const [sales, setSales] = useState([]);
   const [pending, setPending] = useState([]);
@@ -41,7 +41,10 @@ const ClientsProvider = ({children}) => {
   };
 
 
-  useEffect(() => {getClients(localStorage.getItem("id"))}, [])
+  useEffect(() => {
+    if (isLoggedIn)
+      getClients(localStorage.getItem("id"))
+  }, [isLoggedIn])
 
 
   return (
