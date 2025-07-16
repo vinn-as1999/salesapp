@@ -341,17 +341,17 @@ aside div:hover {
 .clients-main.mobile .clients-list-form .info-field .errorInput {
   border: solid 1px #E43232;
 }
-.clients-main.mobile .clients-list-form .info-field .dropdown {
+.clients-main.mobile .clients-list-form .info-field .dropdown-cli, .clients-main.mobile .clients-list-form .info-field .dropdown-prod {
   position: absolute;
   background-color: white;
   width: 48%;
   max-height: 20vh;
   overflow-y: auto;
 }
-.clients-main.mobile .clients-list-form .info-field .dropdown div {
+.clients-main.mobile .clients-list-form .info-field .dropdown-cli div, .clients-main.mobile .clients-list-form .info-field .dropdown-prod div {
   padding: 3px;
 }
-.clients-main.mobile .clients-list-form .info-field .dropdown div:hover {
+.clients-main.mobile .clients-list-form .info-field .dropdown-cli div:hover, .clients-main.mobile .clients-list-form .info-field .dropdown-prod div:hover {
   background-color: #8329ad;
   color: #d8dbdb;
 }
@@ -462,17 +462,17 @@ aside div:hover {
 .sales-main.mobile .sales-list-form .info-field .errorInput {
   border: solid 1px #E43232;
 }
-.sales-main.mobile .sales-list-form .info-field .dropdown {
+.sales-main.mobile .sales-list-form .info-field .dropdown-cli, .sales-main.mobile .sales-list-form .info-field .dropdown-prod {
   position: absolute;
   background-color: white;
   width: 48%;
   max-height: 20vh;
   overflow-y: auto;
 }
-.sales-main.mobile .sales-list-form .info-field .dropdown div {
+.sales-main.mobile .sales-list-form .info-field .dropdown-cli div, .sales-main.mobile .sales-list-form .info-field .dropdown-prod div {
   padding: 3px;
 }
-.sales-main.mobile .sales-list-form .info-field .dropdown div:hover {
+.sales-main.mobile .sales-list-form .info-field .dropdown-cli div:hover, .sales-main.mobile .sales-list-form .info-field .dropdown-prod div:hover {
   background-color: #8329ad;
   color: #d8dbdb;
 }
@@ -563,17 +563,17 @@ aside div:hover {
 .products-main.mobile .products-list-form .info-field .errorInput {
   border: solid 1px #E43232;
 }
-.products-main.mobile .products-list-form .info-field .dropdown {
+.products-main.mobile .products-list-form .info-field .dropdown-cli, .products-main.mobile .products-list-form .info-field .dropdown-prod {
   position: absolute;
   background-color: white;
   width: 48%;
   max-height: 20vh;
   overflow-y: auto;
 }
-.products-main.mobile .products-list-form .info-field .dropdown div {
+.products-main.mobile .products-list-form .info-field .dropdown-cli div, .products-main.mobile .products-list-form .info-field .dropdown-prod div {
   padding: 3px;
 }
-.products-main.mobile .products-list-form .info-field .dropdown div:hover {
+.products-main.mobile .products-list-form .info-field .dropdown-cli div:hover, .products-main.mobile .products-list-form .info-field .dropdown-prod div:hover {
   background-color: #8329ad;
   color: #d8dbdb;
 }

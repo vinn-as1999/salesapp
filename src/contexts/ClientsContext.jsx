@@ -36,8 +36,9 @@ const ClientsProvider = ({children, isLoggedIn}) => {
 
   function searchClients(name) {
     return clients.filter(client => 
-      client.client.toLowerCase().includes(name.toLowerCase())
-    );
+      client.client.toLowerCase()
+        .includes(name.toLowerCase())
+    )
   };
 
 

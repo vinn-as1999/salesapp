@@ -33,9 +33,17 @@ const ProductsProvider = ({children, isLoggedIn}) => {
   };
 
 
+  function searchProducts(name) {
+    return products.filter(product => 
+      product.product.toLowerCase()
+        .includes(name.toLowerCase())
+    )
+  };
+
+
   useEffect(() => {
     if (isLoggedIn)
-    getProducts(localStorage.getItem('id'))
+      getProducts(localStorage.getItem('id'))
   }, [isLoggedIn]);
 
 
@@ -44,7 +52,7 @@ const ProductsProvider = ({children, isLoggedIn}) => {
       value={{
         products, setProducts, 
         categories, setCategories,
-        getProducts
+        getProducts, searchProducts
       }}>
       {children}
     </ProductsContext.Provider>

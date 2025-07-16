@@ -11,7 +11,7 @@ import Dropdown from '../components/Dropdown';
 
 function SalesPage(props) {
   const {sales, clients, searchClients} = useContext(ClientsContext);
-  const {products} = useContext(ProductsContext);
+  const {products, searchProducts} = useContext(ProductsContext);
 
   const [clientName, setClientName] = useState('');
   const [productName, setProductName] = useState('');
@@ -48,7 +48,12 @@ function SalesPage(props) {
 
 
   useEffect(() => {
-    // função de pesquisar produtos
+    console.log(productName)
+    setProductsList(searchProducts(productName))
+
+    if (productName === '') {
+      setProductsList([]);
+    }
   }, [productName])
 
 
@@ -68,8 +73,8 @@ function SalesPage(props) {
                 value={clientName}
                 onChange={(e) => setClientName(e.target.value)}
               />
-              <div className='dropdown'>
-                <Dropdown list={clientsList} setName={setClientName} setList={setClientsList} />
+              <div className='dropdown-cli'>
+                <Dropdown list={clientsList} setName={setClientName} setList={setClientsList} displayKey="client" />
               </div>
             </div>
           </div>
@@ -82,8 +87,8 @@ function SalesPage(props) {
                 value={productName}
                 onChange={(e) => setProductName(e.target.value)}
               />
-              <div className='dropdown'>
-                <Dropdown list={productsList} setName={setProductName} setList={setProductsList} />
+              <div className='dropdown-prod'>
+                <Dropdown list={productsList} setName={setProductName} setList={setProductsList} displayKey="product" />
               </div>
             </div>
           </div>
