@@ -20,13 +20,33 @@ function SalesPage(props) {
   const [productsList, setProductsList] = useState([]);
 
 
-  async function registerSale(id) {
-    if (!id) id = localStorage.getItem("id");
+  async function registerSale(event) {
+    event.preventDefault();
+    const id = localStorage.getItem("id");
     
     const requestBody = {
       name: clientName,
       product: productName
     };
+
+    try {
+      const response = await fetch(`http://localhost:5152/sales/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(requestBody)
+      });
+
+      if (!response.ok) return;
+
+      const data = await response.json();
+      console.log(data);
+
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   async function handleEditSale(id) {
@@ -64,7 +84,7 @@ function SalesPage(props) {
 
         <h2>Vendas</h2>
 
-        <section className="sales-list-form">
+        <form className="sales-list-form" onSubmit={(e) => registerSale(e)}>
           <div className="info-field">
             <label htmlFor="">Cliente</label>
             <div>
@@ -95,11 +115,11 @@ function SalesPage(props) {
 
           <div className="save-field">
             <label htmlFor="">Registrar</label>
-            <button className='save'>
+            <button type='submit' className='save'>
               <IoCheckmarkCircle />
             </button>
           </div>
-        </section>
+        </form>
 
         <section className='sales-list'>
           <ul>

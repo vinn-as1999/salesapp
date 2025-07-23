@@ -73,7 +73,7 @@ function ProductsPage(props) {
       if (!response.ok) {
         throw new Error(message);
       }
-      console.log('boa, foi')
+      
       setServerMessage(message);
       setError(false);
 

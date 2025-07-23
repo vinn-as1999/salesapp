@@ -1,6 +1,5 @@
 function Dropdown(props) {
   return (
-    
     <>
       {
         props.list.length > 0
