@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 
 const ClientsContext = createContext();
 
-const ClientsProvider = ({children, isLoggedIn}) => {
+const ClientsProvider = ({children}) => {
   const [clients, setClients] = useState([]);
   const [sales, setSales] = useState([]);
   const [pending, setPending] = useState([]);
@@ -25,7 +25,6 @@ const ClientsProvider = ({children, isLoggedIn}) => {
 
       const data = await response.json();
 
-      console.log(data);
       setClients(data);
 
     } catch (error) {
@@ -43,9 +42,15 @@ const ClientsProvider = ({children, isLoggedIn}) => {
 
 
   useEffect(() => {
-    if (isLoggedIn)
-      getClients(localStorage.getItem("id"))
-  }, [isLoggedIn])
+    console.log('useefectou');
+    const isLoggedIn = localStorage.getItem("token") !== null;
+
+    if (isLoggedIn) {
+      console.log('logou e chamou getCli');
+      getClients(localStorage.getItem("id"));
+    }
+  }, []);
+
 
 
   return (

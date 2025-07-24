@@ -39,7 +39,7 @@ const App = () => {
   return (
     <>
       <UserProvider>
-        <ClientsProvider isLoggedIn={isLoggedIn}>
+        <ClientsProvider>
           <ProductsProvider isLoggedIn={isLoggedIn}>
             <BrowserRouter>
               <Routes>

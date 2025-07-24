@@ -4,7 +4,7 @@ function Dropdown(props) {
       {
         props.list.length > 0
           ? props.list.map((item, index) => (
-            <div key={index} onClick={() => {setName(item[props.displayKey]); setList([])}}>
+            <div key={index} onClick={() => {props.setName(item[props.displayKey]); props.setList([])}}>
               {item[props.displayKey]}
             </div>
           ))

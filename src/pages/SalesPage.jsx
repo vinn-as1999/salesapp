@@ -30,7 +30,7 @@ function SalesPage(props) {
     };
 
     try {
-      const response = await fetch(`http://localhost:5152/sales/${id}`, {
+      const response = await fetch(`http://localhost:5152/sales`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -68,7 +68,6 @@ function SalesPage(props) {
 
 
   useEffect(() => {
-    console.log(productName)
     setProductsList(searchProducts(productName))
 
     if (productName === '') {

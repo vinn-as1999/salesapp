@@ -30,10 +30,10 @@ function ClientsPage(props) {
       notes
     };
 
-    setClients(prevClients => [...prevClients, requestBody]);
+    setClientsList(prevClients => [...prevClients, requestBody]);
 
     try {
-      const response = await fetch("http://localhost:5152/clients", {
+      await fetch("http://localhost:5152/clients", {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -41,10 +41,6 @@ function ClientsPage(props) {
         },
         body: JSON.stringify(requestBody)
       });
-
-      const data = await response.json();
-      console.log(data.client_data, id)
-      getClients(id);
 
     } catch(error) {
       console.log('Erro: ', error);
@@ -65,6 +61,10 @@ function ClientsPage(props) {
   useEffect(() => {
     setClientsList(searchClients(searchTerm))
   }, [searchTerm])
+
+  useEffect(() => {
+    setClientsList(clients)
+  }, [clients])
 
 
   return (
