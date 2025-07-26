@@ -8,15 +8,18 @@ const ProductsProvider = ({children, isLoggedIn}) => {
   const [categories, setCategories] = useState([]);
 
 
-  async function getProducts(id) {
-    if (!id) id = localStorage.getItem("id");
+  async function getProducts() {
+    const id = localStorage.getItem("id");
+    const token = localStorage.getItem("token");
+
+    if (!id || !token) return;
 
     try {
       const response = await fetch(`http://localhost:5152/products/${id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem('token')}`
+          "Authorization": `Bearer ${token}`
         }
       });
 
