@@ -7,10 +7,12 @@ import Empty from '../components/Empty';
 import BillingButton from '../components/BillingButton';
 import EditionMenu from '../components/EditionMenu';
 import Dropdown from '../components/Dropdown';
+import ServerMessage from '../components/ServerMessage';
 
 
 function SalesPage(props) {
-  const {sales, clients, searchClients} = useContext(ClientsContext);
+  const date = new Date().toLocaleDateString();
+  const {sales, setSales, searchClients} = useContext(ClientsContext);
   const {products, searchProducts} = useContext(ProductsContext);
 
   const [clientName, setClientName] = useState('');
@@ -18,16 +20,28 @@ function SalesPage(props) {
 
   const [clientsList, setClientsList] = useState([]);
   const [productsList, setProductsList] = useState([]);
+  const [serverMessage, setServerMessage] = useState(null);
+  const [error, setError] = useState(false);
 
 
   async function registerSale(event) {
     event.preventDefault();
-    const id = localStorage.getItem("id");
+
+    if (!clientName.trim() || !productName.trim()) return;
+
+    const prod = products.find(prod => prod.product === productName);
+
+    if (!prod) return;
     
     const requestBody = {
       name: clientName,
-      product: productName
+      product: productName,
+      price: prod?.price,
+      date: date,
+      status: 'pending'
     };
+
+    setSales(prev => [...prev, requestBody]);
 
     try {
       const response = await fetch(`http://localhost:5152/sales`, {
@@ -39,10 +53,24 @@ function SalesPage(props) {
         body: JSON.stringify(requestBody)
       });
 
-      if (!response.ok) return;
-
       const data = await response.json();
-      console.log(data);
+      setServerMessage(data.message);
+
+      if (!response.ok) {
+        setError(true);
+        setSales(prev => {
+          prev.slice(0, -1)
+          return prev
+        });
+
+        return;
+      }
+
+      setSales(prev => {
+        const lastSale = prev[prev.length - 1];
+        lastSale.id = data.sale_id;
+        return [...prev];
+      });
 
     } catch (error) {
       console.error(error);
@@ -61,7 +89,7 @@ function SalesPage(props) {
   useEffect(() => {
     setClientsList(searchClients(clientName));
 
-    if (clientName === '') {
+    if (!clientName.trim()) {
       setClientsList([]);
     }
   }, [clientName])
@@ -70,10 +98,20 @@ function SalesPage(props) {
   useEffect(() => {
     setProductsList(searchProducts(productName))
 
-    if (productName === '') {
+    if (!productName.trim()) {
       setProductsList([]);
     }
   }, [productName])
+
+  useEffect(() => {
+    if (serverMessage) {
+      const timer = setTimeout(() => {
+        setServerMessage(null);
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [serverMessage]);
 
 
   return (
@@ -97,6 +135,10 @@ function SalesPage(props) {
               </div>
             </div>
           </div>
+
+          {
+            serverMessage ? <ServerMessage message={serverMessage} error={error} /> : null
+          }
 
           <div className="info-field">
             <label htmlFor="">Produto</label>
@@ -149,9 +191,9 @@ function SalesPage(props) {
                         </>
 
                       : <>
-                          <div>{sale.client}</div>
+                          <div>{sale.name}</div>
                           <div>{sale.product}</div>
-                          <div>{sale.value}</div>
+                          <div>R$ {sale.price.toFixed(2)}</div>
                           <div>{sale.date}</div>
                         </>
                     }

@@ -7,7 +7,7 @@ import { IoCheckmarkDone } from "react-icons/io5";
 
 
 const Home = (props) => {
-  const { clients, setClients, pending, pendingValues } = useContext(ClientsContext);
+  const {clients, setClients, pending, pendingValues} = useContext(ClientsContext);
 
   return (
     <>
@@ -31,9 +31,6 @@ const Home = (props) => {
                         <stop offset="100%" stopColor="#fff" stopOpacity="1" />
                       </linearGradient>
                     </defs>
-                    {/* 
-                      CÁLCULO: (n * 10) / 5              
-                    */}
                     <rect className="bar" x="0" y="5" width={(value.value * 10) / 5} height="10" fill="url(#barGradient)" />
                   </svg>
 
