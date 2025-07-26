@@ -54,7 +54,7 @@ function LoginForm(props) {
       localStorage.setItem('name', userName);
       localStorage.setItem('email', userEmail);
       
-      getClients(userId);
+      getClients();
       getProducts(userId);
       navigate('/home');
 

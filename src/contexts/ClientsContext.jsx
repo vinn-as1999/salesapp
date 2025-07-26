@@ -9,15 +9,18 @@ const ClientsProvider = ({children}) => {
   const [pendingValues, setPendingValues] = useState([]);
 
 
-  async function getClients(id) {
-    try {
-      if (!id) id = localStorage.getItem("id");
+  async function getClients() {
+    const id = localStorage.getItem("id");
+    const token = localStorage.getItem("token");
 
+    if (!id || !token) return;
+
+    try {
       const response = await fetch(`http://localhost:5152/clients/${id}`, {
         method: 'GET',
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem('token')}`
+          "Authorization": `Bearer ${token}`
         }
       });
 
@@ -33,6 +36,22 @@ const ClientsProvider = ({children}) => {
   };
 
 
+  async function getSales() {
+    const id = localStorage.getItem("id");
+    const token = localStorage.getItem("token")
+
+    if (!id || !token) return;
+
+    const response = await fetch("http://localhost:5152/sales", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    })
+  };
+
+
   function searchClients(name) {
     return clients.filter(client => 
       client.client.toLowerCase()
@@ -42,11 +61,9 @@ const ClientsProvider = ({children}) => {
 
 
   useEffect(() => {
-    console.log('useefectou');
     const isLoggedIn = localStorage.getItem("token") !== null;
 
     if (isLoggedIn) {
-      console.log('logou e chamou getCli');
       getClients(localStorage.getItem("id"));
     }
   }, []);
