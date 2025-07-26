@@ -41,14 +41,24 @@ const ClientsProvider = ({children}) => {
     const token = localStorage.getItem("token")
 
     if (!id || !token) return;
+    
+    try {
+      const response = await fetch("http://localhost:5152/sales", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        }
+      });
 
-    const response = await fetch("http://localhost:5152/sales", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      }
-    })
+      if (!response.ok) return;
+
+      const data = await response.json();
+      setSales(data);
+
+    } catch (error) {
+      console.error(error)
+    }
   };
 
 
@@ -77,7 +87,8 @@ const ClientsProvider = ({children}) => {
         pending, setPending,
         pendingValues, setPendingValues,
         sales, setSales,
-        getClients, searchClients
+        getClients, searchClients,
+        getSales
       }}>
       {children}
     </ClientsContext.Provider>
