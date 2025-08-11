@@ -54,6 +54,7 @@ const ClientsProvider = ({children}) => {
       if (!response.ok) return;
 
       const data = await response.json();
+      console.log(data)
       setSales(data);
 
     } catch (error) {
@@ -74,7 +75,8 @@ const ClientsProvider = ({children}) => {
     const isLoggedIn = localStorage.getItem("token") !== null;
 
     if (isLoggedIn) {
-      getClients(localStorage.getItem("id"));
+      getClients();
+      getSales();
     }
   }, []);
 

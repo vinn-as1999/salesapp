@@ -5,9 +5,9 @@ import { ClientsContext } from '../contexts/ClientsContext';
 import { ProductsContext } from '../contexts/ProductsContext';
 
 function LoginForm(props) {
-  const { setIsAdmin } = useContext(UserContext);
-  const { getClients } = useContext(ClientsContext);
-  const { getProducts } = useContext(ProductsContext);
+  const {setIsAdmin} = useContext(UserContext);
+  const {getSales, getClients} = useContext(ClientsContext);
+  const {getProducts} = useContext(ProductsContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const emailClassName = email ? 'login-field has-content' : 'login-field';
@@ -56,6 +56,7 @@ function LoginForm(props) {
       
       getClients();
       getProducts();
+      getSales();
       navigate('/home');
 
     } catch (error) {

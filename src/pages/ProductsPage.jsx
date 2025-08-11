@@ -77,7 +77,7 @@ function ProductsPage(props) {
       setServerMessage(message);
       setError(false);
 
-      getProducts(id);
+      getProducts();
 
     } catch (error) {
       console.log('Erro ao cadastrar produto', error);

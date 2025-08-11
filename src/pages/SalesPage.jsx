@@ -34,7 +34,7 @@ function SalesPage(props) {
     if (!prod) return;
     
     const requestBody = {
-      name: clientName,
+      client: clientName,
       product: productName,
       price: prod?.price,
       date: date,
@@ -191,7 +191,7 @@ function SalesPage(props) {
                         </>
 
                       : <>
-                          <div>{sale.name}</div>
+                          <div>{sale.client}</div>
                           <div>{sale.product}</div>
                           <div>R$ {sale.price.toFixed(2)}</div>
                           <div>{sale.date}</div>
