@@ -12,12 +12,11 @@ function EditionMenu(props) {
           props.trigger !== props.idx 
             ?  <MdModeEdit className='edit-bttn' size={25} onClick={(e) => {
                 e.stopPropagation();
-                props.edit(props.idx);
                 props.setTrigger(props.idx);
-                console.log(props.trigger)
               }} />
             : <FaRegCheckCircle className='save-bttn' size={25} onClick={(e) => {
                 e.stopPropagation();
+                props.edit(props.saleId);
                 props.setTrigger(null);
               }} />
         }

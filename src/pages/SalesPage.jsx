@@ -18,6 +18,12 @@ function SalesPage(props) {
   const [clientName, setClientName] = useState('');
   const [productName, setProductName] = useState('');
 
+  // edition fields
+  const [newClientName, setNewClientName] = useState('');
+  const [newProductName, setNewProductName] = useState('');
+  const [newPrice, setNewPrice] = useState('');
+  const [newDate, setNewDate] = useState('');
+
   const [clientsList, setClientsList] = useState([]);
   const [productsList, setProductsList] = useState([]);
   const [serverMessage, setServerMessage] = useState(null);
@@ -78,7 +84,7 @@ function SalesPage(props) {
   };
 
   async function handleEditSale(id) {
-    console.log('editou venda');
+    console.log('editou venda: ', id);
   };
 
   async function handleDeleteSale(id) {
@@ -104,6 +110,7 @@ function SalesPage(props) {
   }, [productName])
 
   useEffect(() => {
+    console.log('sales: ', sales);
     if (serverMessage) {
       const timer = setTimeout(() => {
         setServerMessage(null);
@@ -184,10 +191,18 @@ function SalesPage(props) {
                     {
                       props.saleTrigger === index 
                       ? <>
-                          <div><input type="text" value={sale.client} /></div>
-                          <div><input type="text" value={sale.product} /></div>
-                          <div><input type="text" value={sale.value} /></div>
-                          <div><input type="text" value={sale.date} /></div>
+                          <div>
+                            <input type="text" value={sale.client} onChange={(e) => setNewClientName(e.target.value)} />
+                          </div>
+                          <div>
+                            <input type="text" value={sale.product} onChange={(e) => setNewProductName(e.target.value)} />
+                          </div>
+                          <div>
+                            <input type="text" value={sale.value} onChange={(e) => setNewPrice(e.target.value)} />
+                          </div>
+                          <div>
+                            <input type="text" value={sale.date} onChange={(e) => setNewDate(e.target.value)} />
+                          </div>
                         </>
 
                       : <>
@@ -200,6 +215,7 @@ function SalesPage(props) {
 
                     <EditionMenu 
                       idx={index} 
+                      saleId={sale._id}
                       editVariable={props.editSale} 
                       setEditFunction={props.setEditSale} 
                       edit={handleEditSale}

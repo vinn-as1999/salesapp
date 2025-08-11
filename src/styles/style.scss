@@ -115,6 +115,14 @@ h3 {
   }
 }
 
+ul li {
+  input {
+    width: 70%;
+    border: none;
+    outline-color: $color-primary;
+  }
+}
+
 
 @keyframes appears {
   from { right: 150%; }
