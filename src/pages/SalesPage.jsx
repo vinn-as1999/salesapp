@@ -84,8 +84,43 @@ function SalesPage(props) {
   };
 
   async function handleEditSale(id) {
-    console.log('editou venda: ', id);
-  };
+    setSales(
+      prevSales => prevSales.map(
+        sale => sale._id === id
+          ? {
+              ...sale, 
+              client: newClientName,
+              product: newProductName,
+              value: newPrice,
+              date: newDate
+            }
+          : sale
+      )
+    );
+
+    try {
+      const response = await fetch(`http://localhost:5152/sales`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({
+          client: newClientName,
+          product: newProductName,
+          price: newPrice,
+          date: newDate
+        })
+      });
+
+      const data = await response.json();
+      setServerMessage(data.message);
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
 
   async function handleDeleteSale(id) {
     console.log('deletou venda');
@@ -130,7 +165,7 @@ function SalesPage(props) {
 
         <form className="sales-list-form" onSubmit={(e) => registerSale(e)}>
           <div className="info-field">
-            <label htmlFor="">Cliente</label>
+            <label>Cliente</label>
             <div>
               <input type="text"
                 placeholder='ex: João'
@@ -148,7 +183,7 @@ function SalesPage(props) {
           }
 
           <div className="info-field">
-            <label htmlFor="">Produto</label>
+            <label>Produto</label>
             <div>
               <input type="text"
                 placeholder='ex: Paçoca'
@@ -162,7 +197,7 @@ function SalesPage(props) {
           </div>
 
           <div className="save-field">
-            <label htmlFor="">Registrar</label>
+            <label>Registrar</label>
             <button type='submit' className='save'>
               <IoCheckmarkCircle />
             </button>
@@ -185,6 +220,10 @@ function SalesPage(props) {
                     onClick={(e) => {
                       e.stopPropagation(); 
                       props.setEditSale(index);
+                      setNewClientName(sale.client);
+                      setNewProductName(sale.product);
+                      setNewPrice(sale.price);
+                      setNewDate(sale.date);
                     }} 
                     style={{position: 'relative'}}
                   >
@@ -192,16 +231,16 @@ function SalesPage(props) {
                       props.saleTrigger === index 
                       ? <>
                           <div>
-                            <input type="text" value={sale.client} onChange={(e) => setNewClientName(e.target.value)} />
+                            <input type="text" value={newClientName} onChange={(e) => setNewClientName(e.target.value)} />
                           </div>
                           <div>
-                            <input type="text" value={sale.product} onChange={(e) => setNewProductName(e.target.value)} />
+                            <input type="text" value={newProductName} onChange={(e) => setNewProductName(e.target.value)} />
                           </div>
                           <div>
-                            <input type="text" value={sale.value} onChange={(e) => setNewPrice(e.target.value)} />
+                            <input type="text" value={newPrice} onChange={(e) => setNewPrice(e.target.value)} />
                           </div>
                           <div>
-                            <input type="text" value={sale.date} onChange={(e) => setNewDate(e.target.value)} />
+                            <input type="text" value={newDate} onChange={(e) => setNewDate(e.target.value)} />
                           </div>
                         </>
 
