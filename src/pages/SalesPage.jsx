@@ -10,6 +10,8 @@ import Dropdown from '../components/Dropdown';
 import ServerMessage from '../components/ServerMessage';
 
 
+const token = localStorage.getItem("token");
+
 function SalesPage(props) {
   const date = new Date().toLocaleDateString();
   const {sales, setSales, searchClients} = useContext(ClientsContext);
@@ -84,6 +86,10 @@ function SalesPage(props) {
   };
 
   async function handleEditSale(id) {
+    if (!id) {
+      return;
+    }
+
     setSales(
       prevSales => prevSales.map(
         sale => sale._id === id
@@ -99,11 +105,11 @@ function SalesPage(props) {
     );
 
     try {
-      const response = await fetch(`http://localhost:5152/sales`, {
+      const response = await fetch(`http://localhost:5152/sales/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("token")}`
+          "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify({
           client: newClientName,
@@ -119,11 +125,32 @@ function SalesPage(props) {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
 
   async function handleDeleteSale(id) {
-    console.log('deletou venda');
+    if (!id) {
+      return;
+    }
+
+    setSales(prevSales => prevSales.filter(sale => sale._id !== id));
+
+    try {
+      const response = await fetch(`http://localhost:5152/sales/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        }
+      });
+
+      const data = await response.json();
+      setServerMessage(data.message);
+
+    } catch (error) {
+      console.log(error);
+      
+    }
   };
 
 
