@@ -49,6 +49,8 @@ function SalesPage(props) {
       status: 'pending'
     };
 
+    console.log("corpo adicionado: ", requestBody)
+
     setSales(prev => [...prev, requestBody]);
 
     try {
@@ -76,7 +78,7 @@ function SalesPage(props) {
 
       setSales(prev => {
         const lastSale = prev[prev.length - 1];
-        lastSale.id = data.sale_id;
+        lastSale._id = data.sale_id;
         return [...prev];
       });
 
@@ -84,6 +86,7 @@ function SalesPage(props) {
       console.error(error);
     }
   };
+
 
   async function handleEditSale(id) {
     if (!id) {
@@ -124,16 +127,16 @@ function SalesPage(props) {
 
     } catch (error) {
       console.error(error);
+      setSales(prevSales => prevSales.filter(sale => sale._id !== id));
     }
   };
 
 
   async function handleDeleteSale(id) {
     if (!id) {
+      console.log(id)
       return;
     }
-
-    setSales(prevSales => prevSales.filter(sale => sale._id !== id));
 
     try {
       const response = await fetch(`http://localhost:5152/sales/${id}`, {
@@ -145,11 +148,20 @@ function SalesPage(props) {
       });
 
       const data = await response.json();
+
+      if (!response.ok) {
+        setError(true);
+        return;
+      }
+
       setServerMessage(data.message);
+      setError(false);
+      setSales(prevSales => prevSales.filter(sale => sale._id !== id));
 
     } catch (error) {
       console.log(error);
-      
+      setError(true);
+      setServerMessage("Erro inesperado ocorreu. Tente novamente.");
     }
   };
 
@@ -160,7 +172,7 @@ function SalesPage(props) {
     if (!clientName.trim()) {
       setClientsList([]);
     }
-  }, [clientName])
+  }, [clientName]);
 
 
   useEffect(() => {
@@ -169,14 +181,15 @@ function SalesPage(props) {
     if (!productName.trim()) {
       setProductsList([]);
     }
-  }, [productName])
+  }, [productName]);
+
 
   useEffect(() => {
     console.log('sales: ', sales);
     if (serverMessage) {
       const timer = setTimeout(() => {
         setServerMessage(null);
-      }, 2000);
+      }, 3000);
 
       return () => clearTimeout(timer);
     }

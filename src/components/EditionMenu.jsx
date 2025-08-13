@@ -23,7 +23,8 @@ function EditionMenu(props) {
 
         <FaTrash className='delete-bttn' size={25} onClick={(e) => {
           e.stopPropagation();
-          props.delete(props.idx);
+          props.delete(props.saleId);
+          props.setTrigger(null);
         }} />
         
         <IoMdCloseCircle className='close-bttn' size={25} onClick={(e) => {
